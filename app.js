@@ -6,8 +6,8 @@ const onerror = require('koa-onerror');
 const bodyparser = require('koa-bodyparser')();
 const logger = require('koa-logger');
 
-const index = require('./routes/index');
-const users = require('./routes/users');
+// const index = require('./routes/index');
+// const users = require('./routes/users');
 
 // error handler
 onerror(app);
@@ -19,7 +19,7 @@ app.use(logger());
 app.use(require('koa-static')(__dirname + '/public'));
 
 app.use(views(__dirname + '/views', {
-  extension: 'pug'
+  extension: 'html'
 }));
 
 // logger
@@ -32,7 +32,10 @@ app.use(async (ctx, next) => {
 
 
 // routes
-app.use(index.routes(), index.allowedMethods());
-app.use(users.routes(), users.allowedMethods());
+// app.use(index.routes(), index.allowedMethods());
+// app.use(users.routes(), users.allowedMethods());
+
+const homepage = require("./routes/homepage");
+app.use(homepage.routes(),homepage.allowedMethods());
 
 module.exports = app;

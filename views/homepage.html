@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>newsWebsite</title>
+    <link rel="stylesheet" href="stylesheets/bootstrap.css">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="javascripts/bootstrap.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse" style="font-size: 20px">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header" id="page-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <span class="glyphicon glyphicon-leaf"></span>
+            </a>
+
+            <a class="navbar-brand" href="#">&nbsp;主页</a>
+            <a class="navbar-brand" href="#">&nbsp;推荐</a>
+            <!--<a class="navbar-brand pull-right">-->
+                <!--<span class="glyphicon glyphicon-user"></span>-->
+                <!--&nbsp;登录-->
+                <!--&lt;!&ndash;<span class="caret"></span>&ndash;&gt;-->
+            <!--</a>-->
+
+
+        </div>
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <!--<li><a href="#">Link</a></li>-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-user"></span>
+                        &nbsp;登录
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">个人主页</a></li>
+                        <li><a href="#">修改密码</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">退出当前账号</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-left" id="news-type-show">
+                <li class="news-type"><a href="#">大陆</a></li>
+                <li class="news-type"><a href="#">国际</a></li>
+                <li class="news-type"><a href="#">台湾</a></li>
+                <li class="news-type"><a href="#">社会</a></li>
+                <li class="news-type"><a href="#">军事</a></li>
+                <li class="news-type"><a href="#">港澳</a></li>
+                <li class="news-type"><a href="#">历史</a></li>
+                <li class="news-type"><a href="#">财经</a></li>
+                <li class="news-type"><a href="#">娱乐</a></li>
+                <li class="news-type"><a href="#">体育</a></li>
+                <li class="news-type"><a href="#">时尚</a></li>
+                <li class="news-type"><a href="#">科技</a></li>
+                <li class="news-type"><a href="#">读书</a></li>
+                <li class="news-type"><a href="#">游戏</a></li>
+                <li class="news-type"><a href="#">文化</a></li>
+                <li class="news-type"><a href="#">公益</a></li>
+                <li class="news-type"><a href="#">旅游</a></li>
+                <li class="news-type"><a href="#">健康</a></li>
+
+                <li class="dropdown" id="news-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        新闻类别
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu ">
+                        <li><a href="#">大陆</a></li>
+                        <li><a href="#">国际</a></li>
+                        <li><a href="#">台湾</a></li>
+                        <li><a href="#">社会</a></li>
+                        <li><a href="#">军事</a></li>
+                        <li><a href="#">港澳</a></li>
+                        <li><a href="#">历史</a></li>
+                        <li><a href="#">财经</a></li>
+                        <li><a href="#">娱乐</a></li>
+                        <li><a href="#">体育</a></li>
+                        <li><a href="#">时尚</a></li>
+                        <li><a href="#">科技</a></li>
+                        <li><a href="#">读书</a></li>
+                        <li><a href="#">游戏</a></li>
+                        <li><a href="#">文化</a></li>
+                        <li><a href="#">公益</a></li>
+                        <li><a href="#">旅游</a></li>
+                        <li><a href="#">健康</a></li>
+                        <!--<li role="separator" class="divider"></li>-->
+                    </ul>
+                </li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <h2><span class="glyphicon glyphicon-sunglasses"></span>&nbsp;即时新闻</h2>
+    <h1 id = "showwidth"></h1>
+</div>
+
+
+<script src="javascripts/homepage.js"></script>
+</body>
+</html>
