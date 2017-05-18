@@ -8,6 +8,7 @@
 window.onload = function () {
     // const ul = document.getElementById("news-type-show");
     set_which_show();
+    getNewsList();
 };
 
 
@@ -37,3 +38,26 @@ function set_which_show() {
         }
     }
 }
+
+function getNewsList() {
+    $.post("/news",
+        {
+            type : "即时"
+        },
+        function (data) {
+            // <div class="panel panel-default">
+            //     <div class="panel-body">
+            //     Panel content
+            // Panel content
+            // Panel content
+            // Panel content
+            // Panel content
+            // </div>
+            // </div>
+            for(let i = 0; i < data.length; i++) {
+
+            }
+        }
+    );
+}
+
