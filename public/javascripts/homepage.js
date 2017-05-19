@@ -39,23 +39,70 @@ function set_which_show() {
     }
 }
 
+
+// <div class="panel panel-default">
+//     <div class="panel-body">
+//     Panel content
+// Panel content
+// Panel content
+// Panel content
+// Panel content
+// </div>
+// </div>
+//将数据库获取的data显示出来
 function getNewsList() {
     $.post("/news",
         {
             type : "即时"
         },
         function (data) {
-            // <div class="panel panel-default">
-            //     <div class="panel-body">
-            //     Panel content
-            // Panel content
-            // Panel content
-            // Panel content
-            // Panel content
-            // </div>
-            // </div>
-            for(let i = 0; i < data.length; i++) {
 
+            const maxLength = 150;
+            const maxLine = 6;
+            for(let i = 0; i < data.length; i++) {
+                let div1 = document.createElement("div");
+                div1.setAttribute("class","panel panel-default");
+                let div2 = document.createElement("div");
+                div2.setAttribute("class","panel-body");
+                let h1 = document.createElement("h2");
+                h1.innerText = data[i]['title'];
+                let length = 0;
+                div2.appendChild(h1);
+                let j = 0;
+                const content = data[i]['content'];
+                while(j < content.length && j < maxLine && length < maxLength) {
+                    let text;
+                    if(content[j][0] == 'p') {
+                        text = document.createElement('p');
+                    }
+                    else if(content[j][0] == 'strong') {
+                        text = document.createElement('strong');
+                    }
+                    else {
+                        text = document.createElement('p');
+                        text.innerText = "图片";
+                        div2.appendChild(text);
+                        j++;
+                        continue;
+                    }
+
+                    if(length + content[j][1].length > maxLength) {
+                        text.innerText = content[j][1].substr(0,maxLength - length) + "·····";
+                        length = maxLength;
+                    }
+                    else {
+                        text.innerText = content[j][1];
+                        length += content[j][1].length;
+                        if(j >= maxLine) {
+                            text.innerText = text.innerText + '·····';
+                        }
+
+                    }
+                    div2.appendChild(text);
+                    j++;
+                }
+                div1.appendChild(div2);
+                document.getElementById("news-container").appendChild(div1);
             }
         }
     );
