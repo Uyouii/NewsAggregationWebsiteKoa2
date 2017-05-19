@@ -41,4 +41,10 @@ app.use(homepage.routes(),homepage.allowedMethods());
 const news = require("./routes/news");
 app.use(news.routes(),news.allowedMethods());
 
+const newspage = require("./routes/newspage");
+app.use(newspage.routes(),news.allowedMethods());
+
+const getnewscontent = require("./routes/getnewscontent");
+app.use(getnewscontent.routes(),getnewscontent.allowedMethods());
+
 module.exports = app;

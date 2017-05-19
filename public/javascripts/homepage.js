@@ -5,11 +5,19 @@
 // const news_type_list = ['大陆','国际','台湾','社会','军事','港澳','历史','财经','娱乐',
 //                         '体育','时尚','科技','读书','游戏','文化','公益','旅游','健康'];
 
+let newsType;
+
 window.onload = function () {
     // const ul = document.getElementById("news-type-show");
+
+    newsType = getCookie('newsType');
+    if(newsType == '')
+        newsType = '即时';
+    document.getElementById("newsTitle").innerText = " " + newsType + "新闻";
     set_which_show();
     getNewsList();
 };
+
 
 
 $(document).ready(function(){
@@ -53,19 +61,27 @@ function set_which_show() {
 function getNewsList() {
     $.post("/news",
         {
-            type : "即时"
+            type : newsType
         },
         function (data) {
 
-            const maxLength = 150;
-            const maxLine = 6;
+            const maxLength = 120;
+            const maxLine = 5;
             for(let i = 0; i < data.length; i++) {
                 let div1 = document.createElement("div");
                 div1.setAttribute("class","panel panel-default");
                 let div2 = document.createElement("div");
                 div2.setAttribute("class","panel-body");
-                let h1 = document.createElement("h2");
-                h1.innerText = data[i]['title'];
+                let h1 = document.createElement("h3");
+                let a = document.createElement('a');
+                a.innerText = data[i]['title'];
+                a.setAttribute("href","/newspage");
+                a.setAttribute("target","_blank");
+                a.news_id = data[i]['_id'];
+                a.onclick = function () {
+                    document.cookie = "news_id= " + this.news_id + "; path=newspage.html";
+                };
+                h1.appendChild(a);
                 let length = 0;
                 div2.appendChild(h1);
                 let j = 0;
@@ -101,10 +117,45 @@ function getNewsList() {
                     div2.appendChild(text);
                     j++;
                 }
+                let a2 = document.createElement("a");
+                a2.setAttribute("href","/newspage");
+                a2.setAttribute("target","_blank");
+                a2.setAttribute("class","pull-right");
+                let btn = document.createElement('button');
+                btn.setAttribute("class","btn btn-default");
+                btn.innerText = "详细";
+                btn.news_id = data[i]['_id'];
+                btn.onclick = function () {
+                    document.cookie = "news_id= " + this.news_id + "; path=newspage.html";
+                };
+                a2.appendChild(btn);
+                div2.appendChild(a2);
                 div1.appendChild(div2);
+                // let container = document.getElementById("news-container");
                 document.getElementById("news-container").appendChild(div1);
             }
         }
     );
+}
+
+window.onunload = function () {
+    //document.cookie = "newsType= 即时 ; path=homepage.html";
+};
+
+function getCookie(cname)
+{
+    const name = cname + "=";
+    const ca = document.cookie.split(';');
+    for(let i=0; i<ca.length; i++)
+    {
+        let c = ca[i].trim();
+        if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+
+function jumpTo(newsType) {
+    document.cookie = "newsType= " + newsType + "; path=homepage.html";
+    window.location.href="/";
 }
 

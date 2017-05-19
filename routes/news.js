@@ -9,6 +9,7 @@ router.prefix('/news');
 
 router.post('/', async (ctx, next) => {
    const type = ctx.request.body.type || '';
+   console.log(type);
    if( type != '') {
         ctx.body = await db.getTypeNews(type);
    }

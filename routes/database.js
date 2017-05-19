@@ -20,6 +20,7 @@ const newsSchema = new mongoose.Schema({
 });
 const newsModel = mongoose.model('news',newsSchema);
 
+
 const getTypeNews = async(type) => {
     return newsModel.find({'type':type},async(err,docs) => {
         if(err) {
@@ -29,6 +30,18 @@ const getTypeNews = async(type) => {
     });
 };
 
+let ObjectID = require('mongodb').ObjectID;
+
+const getNewsContent = async(id) => {
+    return newsModel.find({_id:ObjectID(id)} , async(err,docs) => {
+        if(err) {
+            console.log(err);
+        }
+        return docs;
+    })
+};
+
 module.exports = {
     'getTypeNews': getTypeNews,
+    'getNewsContent': getNewsContent
 };
