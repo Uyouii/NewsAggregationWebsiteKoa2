@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9debfc8b-2d28-4e98-a813-f9641c0b2a32" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/homepage.js" afterPath="$PROJECT_DIR$/public/javascripts/homepage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/homepage.html" afterPath="$PROJECT_DIR$/views/homepage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,12 +23,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="homepage.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="homepage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/homepage.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-5860">
               <caret line="25" column="19" lean-forward="false" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/readme.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="540">
+                <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -41,21 +52,6 @@
             <state relative-caret-position="54">
               <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="24" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="homepage.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/homepage.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3186">
-              <caret line="118" column="83" lean-forward="false" selection-start-line="118" selection-start-column="83" selection-end-line="118" selection-end-column="83" />
-              <folding>
-                <element signature="n#style#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#1330#1336#0" expanded="true" />
-                <element signature="e#1388#1394#0" expanded="true" />
-                <element signature="e#2211#2217#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -157,7 +153,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/routes/users.js" />
-        <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/views/html.js" />
         <option value="$PROJECT_DIR$/views/html.html" />
         <option value="$PROJECT_DIR$/views/index.html" />
@@ -178,6 +173,7 @@
         <option value="$PROJECT_DIR$/public/javascripts/newspage.js" />
         <option value="$PROJECT_DIR$/views/homepage.html" />
         <option value="$PROJECT_DIR$/public/javascripts/homepage.js" />
+        <option value="$PROJECT_DIR$/readme.md" />
       </list>
     </option>
   </component>
@@ -412,15 +408,15 @@
       <workItem from="1494994915460" duration="16091000" />
       <workItem from="1495073179458" duration="27512000" />
       <workItem from="1495160164054" duration="24818000" />
-      <workItem from="1495259268629" duration="6423000" />
+      <workItem from="1495259268629" duration="6841000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74844000" />
+    <option name="totallyTimeSpent" value="75262000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15015806" sideWeight="0.496208" order="0" side_tool="false" content_ui="combo" />
@@ -639,16 +635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="270">
-            <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="39" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/html.js" />
     <entry file="file://$PROJECT_DIR$/views/html.html" />
     <entry file="file://$PROJECT_DIR$/package.json">
@@ -851,6 +837,17 @@
         <state relative-caret-position="-5860">
           <caret line="25" column="19" lean-forward="false" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="540">
+            <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
