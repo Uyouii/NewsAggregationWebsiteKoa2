@@ -4,6 +4,8 @@
 
 const router = require('koa-router')();
 
+router.prefix('/homepage');
+
 router.get('/', async (ctx, next) => {
     await ctx.render('homepage')
 });

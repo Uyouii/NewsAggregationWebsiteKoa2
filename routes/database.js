@@ -7,7 +7,7 @@ mongoose.connect('mongodb://localhost:27017/newsSpider');
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.on('open', function () {
-    console.log('connect successfully!');
+    console.log('mongodb connect successfully!');
 });
 
 const newsSchema = new mongoose.Schema({
@@ -20,13 +20,21 @@ const newsSchema = new mongoose.Schema({
 });
 const newsModel = mongoose.model('news',newsSchema);
 
+const usersSchema = new mongoose.Schema({
+    name:String,
+    email:String,
+    password:String,
+    likesType:Object
+});
+
+const usersModel = mongoose.model('users',usersSchema);
+
 
 const getTypeNews = async(type) => {
     return newsModel.find({'type':type},async(err,docs) => {
         if(err) {
             console.log(err);
         }
-        return docs;
     });
 };
 
@@ -37,11 +45,37 @@ const getNewsContent = async(id) => {
         if(err) {
             console.log(err);
         }
-        return docs;
     })
 };
 
+const getEmailNumber = async(email) => {
+  return usersModel.find({'email':email}, async(err,docs) => {
+      if(err) {
+          console.log(err);
+      }
+  }).count()
+};
+
+const insertUser = async(name,email,password) => {
+    let user = new usersModel({
+        name:name,
+        email:email,
+        password:password
+    });
+    user.save( async (err,doc) => {
+        if(err) {
+            console.log('save error:' + err);
+        }
+        else {
+            console.log('save success\n' + doc);
+        }
+    })
+};
+
+
 module.exports = {
     'getTypeNews': getTypeNews,
-    'getNewsContent': getNewsContent
+    'getNewsContent': getNewsContent,
+    'getEmailNumber': getEmailNumber,
+    'insertUser':insertUser,
 };

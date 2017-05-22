@@ -10,6 +10,7 @@ window.onload = function () {
     //alert(news_id);
     set_which_show();
     getNewsContent();
+    setUserButton(false);
 };
 
 
@@ -19,6 +20,19 @@ $(document).ready(function(){
         set_which_show();
     });
 });
+
+function setUserButton(login) {
+    //notLoginButton
+    //alreadyLoginButton
+    if(login) {
+        document.getElementById("notLoginButton").style.display='none';
+        document.getElementById("alreadyLoginButton").style.display='block';
+    }
+    else {
+        document.getElementById("notLoginButton").style.display='block';
+        document.getElementById("alreadyLoginButton").style.display='none';
+    }
+}
 
 //设置显示哪些news_type
 function set_which_show() {
@@ -70,15 +84,16 @@ function getNewsContent() {
                     show_area.appendChild(p);
                 }
                 else if(contents[i][0] == 'strong') {
+                    let p = document.createElement('p');
                     let strong = document.createElement('strong');
                     strong.style.whiteSpace = "pre-wrap";
-                    strong.innerText = "       " + contents[i][1];
+                    strong.innerText =contents[i][1];
 
                     if(i > 0 && contents[i-1][0] == "img") {
                         strong.setAttribute("class","text-center");
                     }
-
-                    show_area.appendChild(strong);
+                    p.appendChild(strong);
+                    show_area.appendChild(p);
                 }
                 else if(contents[i][0] == "img") {
                     let div = document.createElement("div");
@@ -98,7 +113,7 @@ function getNewsContent() {
 
 function jumpTo(newsType) {
     document.cookie = "newsType= " + newsType + "; path=homepage.html";
-    window.location.href="/";
+    window.location.href="/homepage";
 }
 
 function getCookie(cname)

@@ -20,6 +20,7 @@ window.onload = function () {
         newsType = '即时';
     document.getElementById("newsTitle").innerText = " " + newsType + "新闻";
     set_which_show();
+    setUserButton(false);
     getNewsList();
 };
 
@@ -29,6 +30,19 @@ $(document).ready(function(){
         set_which_show();
     });
 });
+
+function setUserButton(login) {
+    //notLoginButton
+    //alreadyLoginButton
+    if(login) {
+        document.getElementById("notLoginButton").style.display='none';
+        document.getElementById("alreadyLoginButton").style.display='block';
+    }
+    else {
+        document.getElementById("notLoginButton").style.display='block';
+        document.getElementById("alreadyLoginButton").style.display='none';
+    }
+}
 
 //设置显示哪些news_type
 function set_which_show() {
@@ -263,6 +277,6 @@ function getCookie(cname)
 
 function jumpTo(newsType) {
     document.cookie = "newsType= " + newsType + "; path=homepage.html";
-    window.location.href="/";
+    window.location.href="/homepage";
 }
 

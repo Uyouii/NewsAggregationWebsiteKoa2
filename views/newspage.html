@@ -44,10 +44,26 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">Link</a></li>-->
-                <li class="dropdown">
+                <li class="dropdown" id="notLoginButton">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-user"></span>
-                        &nbsp;登录
+                        <!--&nbsp;登录-->
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">登录</a></li>
+                        <li><a href="/register">注册</a></li>
+                        <!--<li><a href="#">个人主页</a></li>-->
+                        <!--<li><a href="#">修改密码</a></li>-->
+                        <!--<li role="separator" class="divider"></li>-->
+                        <!--<li><a href="#">退出当前账号</a></li>-->
+                    </ul>
+                </li>
+
+                <li class="dropdown" id="alreadyLoginButton">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-user"></span>
+                        Uyouii
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -112,7 +128,7 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container" id="news-show" style="font-size: 18px;">
+<div class="container" id="news-show" style="font-size: 20px;">
     <br>
     <br>
     <br>
