@@ -30,9 +30,8 @@ app.use(async (ctx, next) => {
 });
 
 
-// routes
+// 各个路由的声明和定义
 app.use(index.routes(), index.allowedMethods());
-
 
 const homepage = require("./routes/homepage");
 app.use(homepage.routes(),homepage.allowedMethods());
@@ -48,6 +47,9 @@ app.use(getnewscontent.routes(),getnewscontent.allowedMethods());
 
 const register = require("./routes/register");
 app.use(register.routes(),register.allowedMethods());
+
+const login = require("./routes/loginpage");
+app.use(login.routes(),login.allowedMethods());
 
 const users = require("./routes/users");
 app.use(users.routes(),users.allowedMethods());

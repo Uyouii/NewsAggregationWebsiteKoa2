@@ -72,10 +72,29 @@ const insertUser = async(name,email,password) => {
     })
 };
 
+const getUserNumber = async (email, password)=> {
+    //返回email和password匹配的用户的个数
+    return usersModel.find({'email':email,'password':password}, async(err,docs) => {
+        if(err) {
+            console.log(err);
+        }
+    }).count()
+};
+
+const getUserName = async(email) => {
+     return usersModel.find({'email':email},async(err,docs) => {
+        if(err) {
+            console.log(err);
+        }
+    });
+};
+
 
 module.exports = {
     'getTypeNews': getTypeNews,
     'getNewsContent': getNewsContent,
     'getEmailNumber': getEmailNumber,
     'insertUser':insertUser,
+    'getUserNumber': getUserNumber,
+    'getUserName': getUserName,
 };

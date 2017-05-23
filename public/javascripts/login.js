@@ -1,7 +1,6 @@
 /**
- * Created by 泰佑 on 2017/5/20.
+ * Created by 泰佑 on 2017/5/23.
  */
-
 
 //设置显示的位置
 function setLocation() {
@@ -41,6 +40,25 @@ function set_which_show() {
     }
 }
 
+function setUser() {
+    email = getCookie('email');
+    if(email != "") {
+        $.post("/users/getUserName",
+            {
+                email : email
+            },
+            function (data) {
+                user = data;
+                document.cookie = "user= " + user + "; path=/";
+                document.getElementById("showName").innerText = user;
+                setUserButton(true);
+            }
+        );
+    }
+    else {
+        setUserButton(false);
+    }
+}
 
 function setUserButton(login) {
     //notLoginButton
@@ -55,11 +73,13 @@ function setUserButton(login) {
     }
 }
 
+let email;
+let user;
 
 window.onload = function () {
     setLocation();
     set_which_show();
-    setUserButton(false);
+    setUser();
 };
 
 $(document).ready(function(){
@@ -70,32 +90,23 @@ $(document).ready(function(){
     });
 });
 
+function jumpToHome() {
+    window.location.href="/homepage";
+}
+
 function jumpTo(newsType) {
     document.cookie = "newsType= " + newsType + "; path=homepage.html";
     window.location.href="/homepage";
 }
 
-/*
-* 接下来是有关注册的处理操作
-* */
-
 function checkInput() {
     resetInputGroupColor();
-    //先去掉字符串两端的空格
-    let username = $.trim(document.getElementById("username").value);
     let email = $.trim(document.getElementById("email").value);
-    let password1 = $.trim(document.getElementById("password1").value);
-    let password2 = $.trim(document.getElementById("password2").value);
+    let password = $.trim(document.getElementById("password").value);
     //验证邮箱格式的正则表达式
     let emailReg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
     let isOk = true;
 
-    if(username == "") {
-        document.getElementById("input-name-group").setAttribute("class","form-group has-error");
-        document.getElementById("username-tip").innerText = "用户名不能为空";
-        isOk = false;
-    }
-    else document.getElementById("input-name-group").setAttribute("class","form-group has-success");
 
     if(email == "") {
         document.getElementById("input-email-group").setAttribute("class","form-group has-error");
@@ -109,42 +120,41 @@ function checkInput() {
     }
     else document.getElementById("input-email-group").setAttribute("class","form-group has-success");
 
-    if(password1 == "") {
-        document.getElementById("input-password1-group").setAttribute("class","form-group has-error");
-        document.getElementById("password1-tip").innerText = "密码不能为空";
-        isOk = false;
-    }
-    else if(password2 == "") {
-        document.getElementById("input-password2-group").setAttribute("class","form-group has-error");
-        document.getElementById("password2-tip").innerText = "密码不能为空";
-        isOk = false;
-    }
-    else if(password1 != password2) {
-        document.getElementById("input-password1-group").setAttribute("class","form-group has-error");
-        document.getElementById("input-password2-group").setAttribute("class","form-group has-error");
-        document.getElementById("password1-tip").innerText = "两次密码不相同";
+    if(password == "") {
+        document.getElementById("input-password-group").setAttribute("class","form-group has-error");
+        document.getElementById("password-tip").innerText = "密码不能为空";
         isOk = false;
     }
     else {
-        document.getElementById("input-password1-group").setAttribute("class","form-group has-success");
-        document.getElementById("input-password2-group").setAttribute("class","form-group has-success");
+        document.getElementById("input-password-group").setAttribute("class","form-group has-success");
     }
 
     if(isOk == true) {
-        $.post("/users/addUser",
+        $.post("/users/checkUser",
             {
-                username:username,
                 email : email,
-                password : password1
+                password : password
             },
             function (data) {
                 if(data) {
                     $('#myModal').modal('show');
+                    document.cookie = "email= " + email + "; path=/";
+                    $.post("/users/getUserName",
+                        {
+                            email : email
+                        },
+                        function (data) {
+                            user = data;
+                            document.cookie = "user= " + user + "; path=/";
+                            document.getElementById("showName").innerText = user;
+                            jumpToHome();
+                        }
+                    );
                 }
                 else {
                     $('#myModal2').modal('show');
                 }
-               // $('#myModal').modal('show');
+                // $('#myModal').modal('show');
                 resetInputGroupColor();
                 clearInput();
             }
@@ -152,33 +162,32 @@ function checkInput() {
     }
 }
 
-function jumpToHome() {
-    window.location.href="/homepage";
-}
-
 //清空输入
 function clearInput() {
-    document.getElementById("username").value = "";
     document.getElementById("email").value = "";
-    document.getElementById("password1").value = "";
-    document.getElementById("password2").value = "";
+    document.getElementById("password").value = "";
 }
 
 //重置输入框的颜色
 function resetInputGroupColor() {
-    document.getElementById("input-name-group").setAttribute("class","form-group");
-    document.getElementById("username-tip").innerText = "";
-
     document.getElementById("input-email-group").setAttribute("class","form-group");
     document.getElementById("email-tip").innerText = "";
 
-    document.getElementById("input-password1-group").setAttribute("class","form-group");
-    document.getElementById("password1-tip").innerText = "";
-
-    document.getElementById("input-password2-group").setAttribute("class","form-group");
-    document.getElementById("password2-tip").innerText = "";
+    document.getElementById("input-password-group").setAttribute("class","form-group");
+    document.getElementById("password-tip").innerText = "";
 
 }
 
+function getCookie(cname)
+{
+    const name = cname + "=";
+    const ca = document.cookie.split(';');
+    for(let i=0; i<ca.length; i++)
+    {
+        let c = ca[i].trim();
+        if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+    }
+    return "";
+}
 
 

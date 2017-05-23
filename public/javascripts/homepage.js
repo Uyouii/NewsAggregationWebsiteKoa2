@@ -20,7 +20,7 @@ window.onload = function () {
         newsType = '即时';
     document.getElementById("newsTitle").innerText = " " + newsType + "新闻";
     set_which_show();
-    setUserButton(false);
+    setUser();
     getNewsList();
 };
 
@@ -30,6 +30,26 @@ $(document).ready(function(){
         set_which_show();
     });
 });
+
+function setUser() {
+    email = getCookie('email');
+    if(email != "") {
+        $.post("/users/getUserName",
+            {
+                email : email
+            },
+            function (data) {
+                user = data;
+                document.cookie = "user= " + user + "; path=/";
+                document.getElementById("showName").innerText = user;
+                setUserButton(true);
+            }
+        );
+    }
+    else {
+        setUserButton(false);
+    }
+}
 
 function setUserButton(login) {
     //notLoginButton
@@ -278,5 +298,15 @@ function getCookie(cname)
 function jumpTo(newsType) {
     document.cookie = "newsType= " + newsType + "; path=homepage.html";
     window.location.href="/homepage";
+}
+
+function showLogoutModal() {
+    $('#logoutModal').modal('show');
+}
+
+function logout() {
+    document.cookie = "user=; path=/";
+    document.cookie = "email=; path=/";
+    setUser();
 }
 

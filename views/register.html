@@ -23,17 +23,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <span class="glyphicon glyphicon-leaf"></span>
             </a>
+            <ul class="dropdown-menu">
+                <li><a href="https://github.com/TaiyouDong" target="_blank">关于作者</a></li>
+            </ul>
 
             <a class="navbar-brand" href="#" onclick=jumpTo("即时")>&nbsp;主页</a>
             <a class="navbar-brand" href="#">&nbsp;推荐</a>
-            <!--<a class="navbar-brand pull-right">-->
-            <!--<span class="glyphicon glyphicon-user"></span>-->
-            <!--&nbsp;登录-->
-            <!--&lt;!&ndash;<span class="caret"></span>&ndash;&gt;-->
-            <!--</a>-->
 
 
         </div>
@@ -51,7 +49,7 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">登录</a></li>
+                        <li><a href="/login">登录</a></li>
                         <li><a href="/register">注册</a></li>
                         <!--<li><a href="#">个人主页</a></li>-->
                         <!--<li><a href="#">修改密码</a></li>-->
@@ -134,7 +132,7 @@
     <div class="row" id="workspace">
         <div class="container">
             <div class="row col-sm-offset-2">
-                <h3 class="col-sm-offset-2"><span class="glyphicon glyphicon-align-justify"></span><strong>  用户注册</strong></h3>
+                <h3 class="col-sm-offset-2"><span class="glyphicon glyphicon-user"></span><strong>  用户注册</strong></h3>
                 <br>
                 <form class="form-horizontal">
                     <div class="form-group" id="input-name-group">
@@ -174,7 +172,7 @@
                             <button type="button" class="btn btn-primary my-button" style="font-size: 100%" onclick=checkInput()>注册</button>
                         </div>
                         <!--<div class=" col-sm-1">-->
-                            <!--<button type="button"  class="btn btn-primary my-button" style="font-size: 100%" onclick=clearInput()>清空</button>-->
+                        <!--<button type="button"  class="btn btn-primary my-button" style="font-size: 100%" onclick=clearInput()>清空</button>-->
                         <!--</div>-->
                     </div>
 

@@ -10,7 +10,7 @@ window.onload = function () {
     //alert(news_id);
     set_which_show();
     getNewsContent();
-    setUserButton(false);
+    setUser();
 };
 
 
@@ -20,6 +20,26 @@ $(document).ready(function(){
         set_which_show();
     });
 });
+
+function setUser() {
+    email = getCookie('email');
+    if(email != "") {
+        $.post("/users/getUserName",
+            {
+                email : email
+            },
+            function (data) {
+                user = data;
+                document.cookie = "user= " + user + "; path=/";
+                document.getElementById("showName").innerText = user;
+                setUserButton(true);
+            }
+        );
+    }
+    else {
+        setUserButton(false);
+    }
+}
 
 function setUserButton(login) {
     //notLoginButton
@@ -126,4 +146,15 @@ function getCookie(cname)
         if (c.indexOf(name)==0) return c.substring(name.length,c.length);
     }
     return "";
+}
+
+
+function showLogoutModal() {
+    $('#logoutModal').modal('show');
+}
+
+function logout() {
+    document.cookie = "user=; path=/";
+    document.cookie = "email=; path=/";
+    setUser();
 }

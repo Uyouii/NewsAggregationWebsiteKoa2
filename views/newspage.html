@@ -23,17 +23,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <span class="glyphicon glyphicon-leaf"></span>
             </a>
+            <ul class="dropdown-menu">
+                <li><a href="https://github.com/TaiyouDong" target="_blank">关于作者</a></li>
+            </ul>
 
             <a class="navbar-brand" href="#" onclick=jumpTo("即时")>&nbsp;主页</a>
             <a class="navbar-brand" href="#">&nbsp;推荐</a>
-            <!--<a class="navbar-brand pull-right">-->
-            <!--<span class="glyphicon glyphicon-user"></span>-->
-            <!--&nbsp;登录-->
-            <!--&lt;!&ndash;<span class="caret"></span>&ndash;&gt;-->
-            <!--</a>-->
 
 
         </div>
@@ -51,7 +49,7 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">登录</a></li>
+                        <li><a href="/login">登录</a></li>
                         <li><a href="/register">注册</a></li>
                         <!--<li><a href="#">个人主页</a></li>-->
                         <!--<li><a href="#">修改密码</a></li>-->
@@ -62,15 +60,14 @@
 
                 <li class="dropdown" id="alreadyLoginButton">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span class="glyphicon glyphicon-user"></span>
-                        Uyouii
+                        <span class="glyphicon glyphicon-user" id="showName"></span>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="#">个人主页</a></li>
                         <li><a href="#">修改密码</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">退出当前账号</a></li>
+                        <li><a href="#" onclick=showLogoutModal()>退出当前账号</a></li>
                     </ul>
                 </li>
             </ul>
@@ -141,6 +138,21 @@
     <br>
 </div>
 
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="logoutModalLabel">提示</h4>
+            </div>
+            <div class="modal-body" id="logoutTip">确定推出当前账号？</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick=logout()>退出</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 
 <script src="javascripts/newspage.js"></script>
 </body>
