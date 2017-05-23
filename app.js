@@ -54,4 +54,7 @@ app.use(login.routes(),login.allowedMethods());
 const users = require("./routes/users");
 app.use(users.routes(),users.allowedMethods());
 
+const changeMessage = require("./routes/changeMessagePage");
+app.use(changeMessage.routes(),changeMessage.allowedMethods());
+
 module.exports = app;

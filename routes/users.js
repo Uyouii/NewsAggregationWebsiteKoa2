@@ -45,5 +45,15 @@ router.post('/getUserName',async(ctx,next)=>{
     ctx.body = user[0]['name'];
 });
 
+router.post('/changeUserMessage',async(ctx,next)=> {
+    const name = ctx.request.body.username || '';
+    const email = ctx.request.body.email || '';
+    const password = ctx.request.body.password || '';
+
+    await db.updateUser(email,name,password);
+
+    ctx.body = true;
+});
+
 
 module.exports = router;

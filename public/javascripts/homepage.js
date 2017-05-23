@@ -41,7 +41,7 @@ function setUser() {
             function (data) {
                 user = data;
                 document.cookie = "user= " + user + "; path=/";
-                document.getElementById("showName").innerText = user;
+                document.getElementById("showName").innerText = "_" + user;
                 setUserButton(true);
             }
         );

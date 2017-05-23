@@ -32,11 +32,6 @@
 
             <a class="navbar-brand" href="#" onclick=jumpTo("即时")>&nbsp;主页</a>
             <a class="navbar-brand" href="#">&nbsp;推荐</a>
-            <!--<a class="navbar-brand pull-right">-->
-                <!--<span class="glyphicon glyphicon-user"></span>-->
-                <!--&nbsp;登录-->
-                <!--&lt;!&ndash;<span class="caret"></span>&ndash;&gt;-->
-            <!--</a>-->
 
 
         </div>
@@ -70,7 +65,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="#">个人主页</a></li>
-                        <li><a href="/changeMessagePage">修改个人信息</a></li>
+                        <li><a href="#">修改个人信息</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#" onclick=showLogoutModal()>退出当前账号</a></li>
                     </ul>
@@ -129,49 +124,79 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<br>
+<br>
+<br>
+<div class="container" style="font-size: 18px;">
+    <div class="row" id="workspace">
+        <div class="container">
+            <div class="row col-sm-offset-2">
+                <h3 class="col-sm-offset-2"><span class="glyphicon glyphicon-user"></span><strong>  修改个人信息</strong></h3>
+                <br>
+                <form class="form-horizontal">
+                    <div class="form-group" id="input-name-group">
+                        <label class="col-sm-2 control-label ">用户名</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" title="username" id="username" placeholder="new name">
+                        </div>
+                        <span id="username-tip" style="color: #761c19" class="col-sm-2"></span>
+                    </div>
 
-<div class="container">
-    <br>
-    <br>
-    <br>
-    <h1><span class="glyphicon glyphicon-sunglasses"></span><strong id="newsTitle"></strong></h1>
-    <br>
-    <div id="news-container" style="font-size: 17px">
+                    <div class="form-group" id="input-email-group">
+                        <label class="col-sm-2 control-label ">邮箱</label>
+                        <div class="col-sm-6">
+                            <input type="email" class="form-control"  title="email" id="email" disabled>
+                        </div>
+                        <span id="email-tip" style="color: #761c19" class="col-sm-2"></span>
+                    </div>
 
+                    <div class="form-group" id="input-password1-group">
+                        <label class="col-sm-2 control-label ">密码</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control"  title="password1" id="password1" placeholder="new password" >
+                        </div>
+                        <span id="password1-tip" style="color: #761c19" class="col-sm-2"></span>
+                    </div>
+
+                    <div class="form-group" id="input-password2-group">
+                        <label class="col-sm-2 control-label ">确认密码</label>
+                        <div class="col-sm-6">
+                            <input type="password"  class="form-control" title="password2" id="password2" placeholder="confirm password">
+                        </div>
+                        <span id="password2-tip" style="color: #761c19" class="col-sm-2"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-1">
+                            <button type="button" class="btn btn-primary my-button" style="font-size: 100%" onclick=checkInput()>修改</button>
+                        </div>
+                        <!--<div class=" col-sm-1">-->
+                        <!--<button type="button"  class="btn btn-primary my-button" style="font-size: 100%" onclick=clearInput()>清空</button>-->
+                        <!--</div>-->
+                    </div>
+
+                </form>
+            </div>
+        </div>
     </div>
-    <!--<div class="panel panel-default">-->
-    <!--<div class="panel-body">-->
-    <!--Panel content-->
-    <!--Panel content-->
-    <!--Panel content-->
-    <!--Panel content-->
-    <!--Panel content-->
-    <!--</div>-->
-    <!--</div>-->
-
 </div>
 
-<div class="text-center" >
-    <nav aria-label="Page navigation">
-        <ul class="pagination pagination-lg" id="button-group">
-            <!--<li>-->
-                <!--<a href="" aria-label="Previous">-->
-                    <!--<span aria-hidden="true">&laquo;</span>-->
-                <!--</a>-->
-            <!--</li>-->
-            <!--<li class="active"><a href="">1</a></li>-->
-            <!--<li><a href="">2</a></li>-->
-            <!--<li><a href="">3</a></li>-->
-            <!--<li><a href="">4</a></li>-->
-            <!--<li><a href="">5</a></li>-->
-            <!--<li>-->
-                <!--<a href="" aria-label="Next">-->
-                    <!--<span aria-hidden="true">&raquo;</span>-->
-                <!--</a>-->
-            <!--</li>-->
-        </ul>
-    </nav>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">修改成功</h4>
+            </div>
+            <div class="modal-body" id="tipText">用户信息已成功修改</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
+
 
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -190,6 +215,8 @@
 </div>
 
 
-<script src="javascripts/homepage.js"></script>
+
+<script src="javascripts/changeMessage.js"></script>
+
 </body>
 </html>

@@ -89,6 +89,14 @@ const getUserName = async(email) => {
     });
 };
 
+const updateUser = async(email,name,password)=> {
+    usersModel.update({'email':email}, {'$set':{'name':name , 'password':password} } , async(err,docs) => {
+        if(err) {
+            console.log(err);
+        }
+    });
+};
+
 
 module.exports = {
     'getTypeNews': getTypeNews,
@@ -97,4 +105,5 @@ module.exports = {
     'insertUser':insertUser,
     'getUserNumber': getUserNumber,
     'getUserName': getUserName,
+    'updateUser' : updateUser,
 };
