@@ -120,31 +120,28 @@ function showNewsList() {
     const maxLine = 5;
     for(let i = NUM * (pageNum - 1); i < newsData.length && i < NUM * pageNum; i++) {
         let imgdiv = document.createElement("div");
-        imgdiv.setAttribute("class","container-fluid");
 
         let j = 0,imgnumber = 0;
         const content = newsData[i]['content'];
 
+        let num = getimgNumber(content);
+        if(num > 1 && atPC) {
+            imgdiv.setAttribute("class","container-fluid");
+        }
+
         while(j < content.length - 1 && imgnumber < maximgnumber) {
-            if(content[j][0] != "img") {
+            if (content[j][0] != "img") {
                 j++;
                 continue;
             }
             let div = document.createElement("div");
-            if(!atPC) {
-                div.setAttribute("class","col-sm-12 text-center");
-            }
-            else {
-                div.setAttribute("class","col-sm-4 text-center");
-            }
+
+            div.setAttribute("class", "col-sm-4 text-center");
             let img = document.createElement("img");
-            img.setAttribute("src",content[j][1]);
-            if(atPC) {
-                img.setAttribute("class","img-tab img-rounded");
-            }
-            else {
-                img.setAttribute("class","img-tab img-rounded");
-            }
+            img.setAttribute("src", content[j][1]);
+
+            img.setAttribute("class", "img-tab img-rounded");
+
             div.appendChild(img);
             imgdiv.appendChild(div);
             j++;
@@ -218,6 +215,17 @@ function showNewsList() {
 
         document.getElementById("news-container").appendChild(div1);
     }
+}
+
+function getimgNumber(content) {
+    let j = 0;
+    let num = 0;
+    while(j < content.length - 1) {
+        if(content[j][0] == 'img')
+            num++;
+        j++;
+    }
+    return num;
 }
 // <li>
 // <a href="#" aria-label="Previous">
