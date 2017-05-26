@@ -64,7 +64,7 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">个人主页</a></li>
+                        <li><a href="/userpage">个人主页</a></li>
                         <li><a href="#">修改个人信息</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#" onclick=showLogoutModal()>退出当前账号</a></li>
@@ -139,7 +139,7 @@
                         <div class="col-sm-6">
                             <input type="text" class="form-control" title="username" id="username" placeholder="new name">
                         </div>
-                        <span id="username-tip" style="color: #761c19" class="col-sm-2"></span>
+                        <span id="username-tip" style="color: #761c19"></span>
                     </div>
 
                     <div class="form-group" id="input-email-group">
@@ -147,7 +147,7 @@
                         <div class="col-sm-6">
                             <input type="email" class="form-control"  title="email" id="email" disabled>
                         </div>
-                        <span id="email-tip" style="color: #761c19" class="col-sm-2"></span>
+                        <span id="email-tip" style="color: #761c19"></span>
                     </div>
 
                     <div class="form-group" id="input-password1-group">
@@ -155,7 +155,7 @@
                         <div class="col-sm-6">
                             <input type="password" class="form-control"  title="password1" id="password1" placeholder="new password" >
                         </div>
-                        <span id="password1-tip" style="color: #761c19" class="col-sm-2"></span>
+                        <span id="password1-tip" style="color: #761c19"></span>
                     </div>
 
                     <div class="form-group" id="input-password2-group">
@@ -163,7 +163,7 @@
                         <div class="col-sm-6">
                             <input type="password"  class="form-control" title="password2" id="password2" placeholder="confirm password">
                         </div>
-                        <span id="password2-tip" style="color: #761c19" class="col-sm-2"></span>
+                        <span id="password2-tip" style="color: #761c19"></span>
                     </div>
 
                     <div class="form-group">
@@ -205,7 +205,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="logoutModalLabel">提示</h4>
             </div>
-            <div class="modal-body" id="logoutTip">确定推出当前账号？</div>
+            <div class="modal-body" id="logoutTip">确定退出当前账号？</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" onclick=logout()>退出</button>

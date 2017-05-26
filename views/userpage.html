@@ -60,15 +60,14 @@
 
                 <li class="dropdown" id="alreadyLoginButton">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span class="glyphicon glyphicon-user"></span>
-                        Uyouii
+                        <span class="glyphicon glyphicon-user" id="showName"></span>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">个人主页</a></li>
-                        <li><a href="#">修改用户名或密码</a></li>
+                        <li><a href="/userpage">个人主页</a></li>
+                        <li><a href="/changeMessagePage">修改个人信息</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">退出当前账号</a></li>
+                        <li><a href="#" onclick=showLogoutModal()>退出当前账号</a></li>
                     </ul>
                 </li>
             </ul>
@@ -125,98 +124,25 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<br>
-<br>
-<br>
-<div class="container" style="font-size: 18px;">
-    <div class="row" id="workspace">
-        <div class="container">
-            <div class="row col-sm-offset-2">
-                <h3 class="col-sm-offset-2"><span class="glyphicon glyphicon-user"></span><strong>  用户注册</strong></h3>
-                <br>
-                <form class="form-horizontal">
-                    <div class="form-group" id="input-name-group">
-                        <label class="col-sm-2 control-label ">用户名</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" title="username" id="username" placeholder="username">
-                        </div>
-                        <span id="username-tip" style="color: #761c19"></span>
-                    </div>
 
-                    <div class="form-group" id="input-email-group">
-                        <label class="col-sm-2 control-label ">邮箱</label>
-                        <div class="col-sm-6">
-                            <input type="email" class="form-control"  title="email" id="email" placeholder="email">
-                        </div>
-                        <span id="email-tip" style="color: #761c19"></span>
-                    </div>
 
-                    <div class="form-group" id="input-password1-group">
-                        <label class="col-sm-2 control-label ">密码</label>
-                        <div class="col-sm-6">
-                            <input type="password" class="form-control"  title="password1" id="password1" placeholder="password">
-                        </div>
-                        <span id="password1-tip" style="color: #761c19"></span>
-                    </div>
-
-                    <div class="form-group" id="input-password2-group">
-                        <label class="col-sm-2 control-label ">确认密码</label>
-                        <div class="col-sm-6">
-                            <input type="password"  class="form-control" title="password2" id="password2" placeholder="confirm password">
-                        </div>
-                        <span id="password2-tip" style="color: #761c19"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-1">
-                            <button type="button" class="btn btn-primary my-button" style="font-size: 100%" onclick=checkInput()>注册</button>
-                        </div>
-                        <!--<div class=" col-sm-1">-->
-                        <!--<button type="button"  class="btn btn-primary my-button" style="font-size: 100%" onclick=clearInput()>清空</button>-->
-                        <!--</div>-->
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">注册成功</h4>
+                <h4 class="modal-title" id="logoutModalLabel">提示</h4>
             </div>
-            <div class="modal-body" id="tipText">用户已成功注册</div>
+            <div class="modal-body" id="logoutTip">确定退出当前账号？</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" onclick=jumpToHome()>确定</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick=logout()>退出</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
 
 
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel2">注册失败</h4>
-            </div>
-            <div class="modal-body" id="tipText2">该邮箱已被占用</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-
-
-<script src="javascripts/register.js"></script>
-
+<script src="javascripts/userpage.js"></script>
 </body>
 </html>

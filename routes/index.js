@@ -4,14 +4,29 @@ router.get('/', async (ctx, next) => {
     await ctx.redirect('homepage');
 });
 
-// router.get('/string', async (ctx, next) => {
-//   ctx.body = 'koa2 string'
-// });
-//
-// router.get('/json', async (ctx, next) => {
-//   ctx.body = {
-//     title: 'koa2 json'
-//   }
-// });
+router.get('/homepage', async (ctx, next) => {
+    await ctx.render('homepage')
+});
+
+router.get('/login', async (ctx, next) => {
+    await ctx.render('login');
+});
+
+
+router.get('/changeMessagePage', async (ctx, next) => {
+    await ctx.render('changeMessage');
+});
+
+router.get('/newspage', async (ctx, next) => {
+    await ctx.render('newspage')
+});
+
+router.get('/register', async (ctx, next) => {
+    await ctx.render('register');
+});
+
+router.get('/userpage',async (ctx,next) => {
+    await ctx.render('userpage');
+});
 
 module.exports = router;
