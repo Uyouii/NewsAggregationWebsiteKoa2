@@ -3,6 +3,7 @@
  */
 
 let news_id;
+let atPC = true;
 
 window.onload = function () {
     // const ul = document.getElementById("news-type-show");
@@ -72,6 +73,7 @@ function set_which_show() {
         for( let i = 0; i < li_list.length; i++) {
             li_list[i].style.display = 'none';
         }
+        atPC = false;
     }
 }
 
@@ -120,6 +122,12 @@ function getNewsContent() {
                     div.setAttribute("class","text-center");
                     let img = document.createElement("img");
                     img.setAttribute("src",contents[i][1]);
+                    if(atPC) {
+                        img.setAttribute("class","img-rounded img-PC");
+                    }
+                    else {
+                        img.setAttribute("class","img-rounded img-mobile");
+                    }
                     div.appendChild(img);
                     let br = document.createElement("br");
                     show_area.appendChild(div);

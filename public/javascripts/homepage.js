@@ -11,6 +11,8 @@ let pageNum = 1;
 let NUM = 15;
 let lastActiveButton;
 let buttonList = [];
+let maximgnumber = 3;
+let atPC = true;
 
 window.onload = function () {
     // const ul = document.getElementById("news-type-show");
@@ -74,6 +76,7 @@ function set_which_show() {
         for( let i = 0; i < li_list.length; i++) {
             li_list[i].style.display = 'block';
         }
+        maximgnumber = 3;
     }
     else {
         document.getElementById("news-dropdown").style.display='block';
@@ -82,6 +85,8 @@ function set_which_show() {
         for( let i = 0; i < li_list.length; i++) {
             li_list[i].style.display = 'none';
         }
+        maximgnumber = 1;
+        atPC = false;
     }
 }
 
@@ -114,11 +119,43 @@ function showNewsList() {
     const maxLength = 120;
     const maxLine = 5;
     for(let i = NUM * (pageNum - 1); i < newsData.length && i < NUM * pageNum; i++) {
+        let imgdiv = document.createElement("div");
+        imgdiv.setAttribute("class","container-fluid");
+
+        let j = 0,imgnumber = 0;
+        const content = newsData[i]['content'];
+
+        while(j < content.length - 1 && imgnumber < maximgnumber) {
+            if(content[j][0] != "img") {
+                j++;
+                continue;
+            }
+            let div = document.createElement("div");
+            if(!atPC) {
+                div.setAttribute("class","col-sm-12 text-center");
+            }
+            else {
+                div.setAttribute("class","col-sm-4 text-center");
+            }
+            let img = document.createElement("img");
+            img.setAttribute("src",content[j][1]);
+            if(atPC) {
+                img.setAttribute("class","img-tab img-rounded");
+            }
+            else {
+                img.setAttribute("class","img-tab img-rounded");
+            }
+            div.appendChild(img);
+            imgdiv.appendChild(div);
+            j++;
+            imgnumber++;
+        }
+
         let div1 = document.createElement("div");
         div1.setAttribute("class","panel panel-default");
         let div2 = document.createElement("div");
         div2.setAttribute("class","panel-body");
-        let h1 = document.createElement("h3");
+        let h1 = document.createElement("h2");
         let a = document.createElement('a');
         a.innerText = newsData[i]['title'];
         a.setAttribute("href","/newspage");
@@ -130,8 +167,10 @@ function showNewsList() {
         h1.appendChild(a);
         let length = 0;
         div2.appendChild(h1);
-        let j = 0;
-        const content = newsData[i]['content'];
+        div2.appendChild(imgdiv);
+        let p = document.createElement("p");
+        div2.appendChild(p);
+        j = 0;
         while(j < content.length && j < maxLine && length < maxLength) {
             let text;
             if(content[j][0] == 'p') {
@@ -140,10 +179,7 @@ function showNewsList() {
             else if(content[j][0] == 'strong') {
                 text = document.createElement('strong');
             }
-            else {
-                text = document.createElement('p');
-                text.innerText = "图片";
-                div2.appendChild(text);
+            else if(content[j][0] == 'img') {
                 j++;
                 continue;
             }
@@ -178,6 +214,8 @@ function showNewsList() {
         div2.appendChild(a2);
         div1.appendChild(div2);
         // let container = document.getElementById("news-container");
+
+
         document.getElementById("news-container").appendChild(div1);
     }
 }
