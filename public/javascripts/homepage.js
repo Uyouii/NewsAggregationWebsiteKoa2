@@ -131,8 +131,9 @@ function showNewsList() {
     }
 
     let likesNewsSet = new Set();
-    if(user.likes[newsType] !== undefined)
+    if(user!== undefined && user.likes !== undefined && user.likes[newsType] !== undefined) {
         likesNewsSet = new Set(user.likes[newsType]);
+    }
 
     for(let i = NUM * (pageNum - 1); i < newsData.length && i < NUM * pageNum; i++) {
         let imgdiv = document.createElement("div");
@@ -168,7 +169,10 @@ function showNewsList() {
         div1.setAttribute("class","panel panel-default");
         let div2 = document.createElement("div");
         div2.setAttribute("class","panel-body");
-        let h1 = document.createElement("h2");
+        let h1;
+        if(atPC)
+            h1 = document.createElement("h2");
+        else h1 = document.createElement("h3");
         let a = document.createElement('a');
         a.innerText = newsData[i]['title'];
         a.setAttribute("href","/newspage");
@@ -221,27 +225,32 @@ function showNewsList() {
         }
         spandiv.setAttribute("style","font-size:20px;color:#00868B;");
 
-
+        let spanWord = document.createElement('span');
         let span2 = document.createElement("span");
         span2.setAttribute("class","glyphicon glyphicon-heart");
         span2.setAttribute("aria-hidden","true");
         if(like) {
             span2.setAttribute("style","font-size:25px; color:#EE2C2C");
+            spanWord.innerText = "已喜欢";
+            spanWord.setAttribute("style","color:#EE2C2C")
         }
         else {
             span2.setAttribute("style","font-size:25px; color:#00868B");
+            spanWord.innerText = "喜欢";
+            spanWord.setAttribute("style","color:#00868B")
         }
         span2.news_id = newsData[i]['_id'];
         span2.like = like;
+        span2.wordDiv = spanWord;
 
         let a3 = document.createElement("a");
         a3.appendChild(span2);
         span2.onclick = function () {
             let news_id = this.news_id;
             let span = this;
-            let like = this.like;
+            let spanWord = this.wordDiv;
             if(email !== "") {
-                if(!like) {
+                if(!span.like) {
                     $.post("/users/addLikes", {
                             email: email,
                             news_id : news_id,
@@ -249,6 +258,9 @@ function showNewsList() {
                         },
                         function (data) {
                             span.setAttribute("style","font-size:25px; color:#EE2C2C");
+                            spanWord.innerText = "已喜欢";
+                            spanWord.setAttribute("style","color:#EE2C2C")
+                            span.like= !span.like;
                         }
                     );
                 }
@@ -260,15 +272,18 @@ function showNewsList() {
                         },
                         function (data) {
                             span.setAttribute("style","font-size:25px; color:#00868B");
+                            spanWord.innerText = "喜欢";
+                            spanWord.setAttribute("style","color:#00868B")
+                            span.like= !span.like;
                         }
                     );
                 }
             }
         };
 
-        spandiv.innerText = "喜欢 ";
-        spandiv.appendChild(span2);
 
+        spandiv.appendChild(spanWord);
+        spandiv.appendChild(span2);
 
         let a2 = document.createElement("a");
         a2.setAttribute("href","/newspage");
@@ -413,6 +428,7 @@ function getCookie(cname)
 
 function jumpTo(newsType) {
     document.cookie = "newsType= " + newsType + "; path=homepage.html";
+    document.cookie = "newsType= " + newsType + "; path=newspage.html";
     window.location.href="/homepage";
 }
 

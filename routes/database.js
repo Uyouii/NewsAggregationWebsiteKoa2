@@ -106,7 +106,7 @@ const updateUser = async(email,name,password)=> {
     });
 };
 
-const addScans = async(email,news_id)=> {
+const addScans = async(email,news_id,newstype)=> {
 
     let user;
     await usersModel.find({'email':email},async(err,docs)=> {
@@ -115,13 +115,6 @@ const addScans = async(email,news_id)=> {
         user = docs[0];
     });
 
-    let newstype;
-    await newsModel.find({_id:ObjectID(news_id)} , async(err,docs) => {
-        if(err) {
-            console.log(err);
-        }
-        newstype = docs[0].type;
-    });
 
     console.log(newstype);
     // console.log(user);

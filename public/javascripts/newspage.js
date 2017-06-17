@@ -6,14 +6,17 @@ let news_id;
 let atPC = true;
 let email;
 let user;
+let newsType;
 
 window.onload = function () {
     // const ul = document.getElementById("news-type-show");
     news_id = getCookie('news_id');
+    newsType = getCookie('newsType');
     //alert(news_id);
+    email = getCookie('email');
+    setUser();
     set_which_show();
     getNewsContent();
-    setUser();
     addScans();
 };
 
@@ -29,7 +32,8 @@ function addScans() {
     if(email !== "") {
         $.post("/users/addScans", {
             email: email,
-            news_id : news_id
+            news_id : news_id,
+            newsType : newsType
         },
         function (data) {
 
@@ -39,21 +43,18 @@ function addScans() {
 }
 
 function setUser() {
-    email = getCookie('email');
     if(email !== "") {
-        if(email !== "") {
-            $.post("/users/getUser",
-                {
-                    email : email
-                },
-                function (data) {
-                    user = data;
-                    document.cookie = "user= " + user['name'] + "; path=/";
-                    document.getElementById("showName").innerText = "_" + user['name'];
-                    setUserButton(true);
-                }
-            );
-        }
+        $.post("/users/getUser",
+            {
+                email : email
+            },
+            function (data) {
+                user = data;
+                document.cookie = "user= " + user['name'] + "; path=/";
+                document.getElementById("showName").innerText = "_" + user['name'];
+                setUserButton(true);
+            }
+        );
     }
     else {
         setUserButton(false);
@@ -101,14 +102,25 @@ function getNewsContent() {
             news_id : news_id
         },
         function (data) {
+            let likesNewsSet = new Set();
+            if(user!== undefined && user.likes !== undefined && user.likes[newsType] !== undefined)
+                likesNewsSet = new Set(user.likes[newsType]);
+
             const message = data[0];
             let show_area = document.getElementById("news-show");
 
-            document.getElementById("new-title").innerText = data[0]['title'];
-            document.getElementById("news-time").innerText = data[0]['datetime'];
-            document.getElementById("news-href").setAttribute("href",data[0]['href']);
-            document.getElementById("news-href").setAttribute("target","_blank");
+            if(atPC) {
+                document.getElementById("new-title2").style.display='none';
+                document.getElementById("new-title1").style.display='block';
+            }
+            else {
+                document.getElementById("new-title2").style.display='block';
+                document.getElementById("new-title1").style.display='none';
+            }
 
+            document.getElementById("new-title1").innerText = data[0]['title'];
+            document.getElementById("new-title2").innerText = data[0]['title'];
+            document.getElementById("news-time").innerText = data[0]['datetime'];
             const contents = data[0]['content'];
 
             for (let i = 0; i < contents.length; i++) {
@@ -152,12 +164,75 @@ function getNewsContent() {
                     show_area.appendChild(br);
                 }
             }
+            let a = document.createElement('a');
+            //a.setAttribute('class','pull-left');
+            a.setAttribute('href',data[0]['href']);
+            a.setAttribute('target','_blank');
+            a.innerText = "原文链接";
+            show_area.appendChild(a);
+
+            let spanHeart = document.getElementById("likeHeart");
+            let spanWord = document.getElementById("likeWord");
+
+            let like = false;
+            if(likesNewsSet.has(news_id)) {
+                like = true;
+            }
+            if(like){
+                spanHeart.setAttribute("style","font-size:25px; color:#EE2C2C");
+                spanWord.innerText = "已喜欢";
+                spanWord.setAttribute("style","font-size:22px; color:#EE2C2C")
+            }
+            else{
+                spanHeart.setAttribute("style","font-size:25px; color:#00868B");
+                spanWord.innerText = "喜欢";
+                spanWord.setAttribute("style","font-size:22px; color:#00868B")
+            }
+            spanHeart.news_id = news_id;
+            spanHeart.like = like;
+
+            spanHeart.onclick = function () {
+                let news_id = this.news_id;
+                let span = this;
+                if(email !== "") {
+                    if(!span.like) {
+                        $.post("/users/addLikes", {
+                                email: email,
+                                news_id : news_id,
+                                newsType: newsType
+                            },
+                            function (data) {
+                                span.setAttribute("style","font-size:25px; color:#EE2C2C");
+                                document.getElementById("likeWord").innerText = "已喜欢";
+                                document.getElementById("likeWord").setAttribute("style","font-size:22px; color:#EE2C2C");
+                                span.like = !span.like;
+                            }
+                        );
+                    }
+                    else{
+                        $.post("/users/deleteLikes", {
+                                email: email,
+                                news_id : news_id,
+                                newsType: newsType
+                            },
+                            function (data) {
+                                span.setAttribute("style","font-size:25px; color:#00868B");
+                                document.getElementById("likeWord").innerText = "喜欢";
+                                document.getElementById("likeWord").setAttribute("style","font-size:22px; color:#00868B");
+                                span.like = !span.like;
+                            }
+                        );
+                    }
+                }
+            };
         }
     );
 }
 
+
 function jumpTo(newsType) {
     document.cookie = "newsType= " + newsType + "; path=homepage.html";
+    document.cookie = "newsType= " + newsType + "; path=newspage.html";
     window.location.href="/homepage";
 }
 

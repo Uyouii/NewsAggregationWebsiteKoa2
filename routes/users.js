@@ -66,7 +66,8 @@ router.post('/changeUserMessage',async(ctx,next)=> {
 router.post('/addScans',async(ctx,next)=> {
     const email = ctx.request.body.email || '';
     const news_id = ctx.request.body.news_id || ' ';
-    await db.addScans(email,news_id);
+    const newsType = ctx.request.body.newsType || ' ';
+    await db.addScans(email,news_id,newsType);
 
     ctx.body = true;
 
