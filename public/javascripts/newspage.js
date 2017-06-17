@@ -26,7 +26,7 @@ $(document).ready(function(){
 });
 
 function addScans() {
-    if(email != "") {
+    if(email !== "") {
         $.post("/users/addScans", {
             email: email,
             news_id : news_id
@@ -40,18 +40,20 @@ function addScans() {
 
 function setUser() {
     email = getCookie('email');
-    if(email != "") {
-        $.post("/users/getUserName",
-            {
-                email : email
-            },
-            function (data) {
-                user = data;
-                document.cookie = "user= " + user + "; path=/";
-                document.getElementById("showName").innerText = "_" + user;
-                setUserButton(true);
-            }
-        );
+    if(email !== "") {
+        if(email !== "") {
+            $.post("/users/getUser",
+                {
+                    email : email
+                },
+                function (data) {
+                    user = data;
+                    document.cookie = "user= " + user['name'] + "; path=/";
+                    document.getElementById("showName").innerText = "_" + user['name'];
+                    setUserButton(true);
+                }
+            );
+        }
     }
     else {
         setUserButton(false);
@@ -110,30 +112,30 @@ function getNewsContent() {
             const contents = data[0]['content'];
 
             for (let i = 0; i < contents.length; i++) {
-                if(contents[i][0] == 'p') {
+                if(contents[i][0] === 'p') {
                     let p = document.createElement('p');
                     p.style.whiteSpace = "pre-wrap";
                     p.innerText  = "       " + contents[i][1];
 
-                    if(i > 0 && contents[i-1][0] == "img") {
+                    if(i > 0 && contents[i-1][0] === "img") {
                         p.setAttribute("class","text-center");
                     }
 
                     show_area.appendChild(p);
                 }
-                else if(contents[i][0] == 'strong') {
+                else if(contents[i][0] === 'strong') {
                     let p = document.createElement('p');
                     let strong = document.createElement('strong');
                     strong.style.whiteSpace = "pre-wrap";
                     strong.innerText =contents[i][1];
 
-                    if(i > 0 && contents[i-1][0] == "img") {
+                    if(i > 0 && contents[i-1][0] === "img") {
                         strong.setAttribute("class","text-center");
                     }
                     p.appendChild(strong);
                     show_area.appendChild(p);
                 }
-                else if(contents[i][0] == "img") {
+                else if(contents[i][0] === "img") {
                     let div = document.createElement("div");
                     div.setAttribute("class","text-center");
                     let img = document.createElement("img");
@@ -166,7 +168,7 @@ function getCookie(cname)
     for(let i=0; i<ca.length; i++)
     {
         let c = ca[i].trim();
-        if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        if (c.indexOf(name)=== 0) return c.substring(name.length,c.length);
     }
     return "";
 }

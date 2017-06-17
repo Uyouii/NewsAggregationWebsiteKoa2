@@ -25,7 +25,7 @@ function set_which_show() {
 
 function setUser() {
     email = getCookie('email');
-    if(email != "") {
+    if(email !== "") {
         $.post("/users/getUserName",
             {
                 email : email
@@ -99,7 +99,7 @@ function getCookie(cname)
     for(let i=0; i<ca.length; i++)
     {
         let c = ca[i].trim();
-        if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        if (c.indexOf(name) === 0) return c.substring(name.length,c.length);
     }
     return "";
 }

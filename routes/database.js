@@ -25,7 +25,7 @@ const usersSchema = new mongoose.Schema({
     email:String,
     password:String,
     likes:Object,
-    scans:Object
+    scans:Object,
 });
 
 const usersModel = mongoose.model('users',usersSchema);
@@ -90,8 +90,16 @@ const getUserName = async(email) => {
     });
 };
 
+const getUser = async(email)=> {
+    return usersModel.find({'email':email},async(err,docs) => {
+        if(err) {
+            console.log(err);
+        }
+    });
+};
+
 const updateUser = async(email,name,password)=> {
-    usersModel.update({'email':email}, {'$set':{'name':name , 'password':password} } , async(err,docs) => {
+    await usersModel.update({'email':email}, {'$set':{'name':name , 'password':password} } , async(err,docs) => {
         if(err) {
             console.log(err);
         }
@@ -116,11 +124,11 @@ const addScans = async(email,news_id)=> {
     });
 
     console.log(newstype);
-    console.log(user);
+    // console.log(user);
     //更新User的浏览记录
-    if(user.scans != undefined) {
+    if(user.scans !== undefined) {
         let scans = user.scans;
-        if(scans[newstype] != undefined) {
+        if(scans[newstype] !== undefined) {
            scans[newstype]++;
            console.log("1" + scans);
            await usersModel.update({'email':email},{'$set':{'scans':scans}},async(err,docs)=> {
@@ -148,6 +156,81 @@ const addScans = async(email,news_id)=> {
 
 };
 
+const addLikes = async(email,news_id,newstype)=>{
+
+    let user;
+    await usersModel.find({'email':email},async(err,docs)=> {
+        if(err)
+            console.log(err);
+        user = docs[0];
+    });
+
+    console.log(newstype);
+
+    if(user.likes !== undefined) {
+        let likes = user.likes;
+        if(likes[newstype] !== undefined) {
+            console.log('1');
+            likes[newstype].push(news_id);
+            await usersModel.update({'email':email},{'$set':{'likes':likes}},async(err,docs)=> {
+                if(err){
+                    console.log(err)
+                }
+            });
+        }
+        else {
+            console.log('2');
+            let ss = [];
+            ss.push(news_id);
+            likes[newstype] = ss;
+            console.log(likes);
+            await usersModel.update({'email':email},{'$set':{'likes':likes}},async(err,docs)=> {
+                if(err){
+                    console.log(err)
+                }
+            });
+        }
+    }
+    else {
+        console.log('3');
+        let likes = new Map();
+        let ss = [];
+        ss.push(news_id);
+        likes[newstype] = ss;
+        console.log(likes);
+        await usersModel.update({'email':email},{'$set':{'likes':likes}},async(err,docs)=> {
+            if(err){
+                console.log(err)
+            }
+        });
+    }
+
+};
+
+const deleteLikes = async(email,news_id,newstype)=> {
+
+    let user;
+    await usersModel.find({'email':email},async(err,docs)=> {
+        if(err)
+            console.log(err);
+        user = docs[0];
+    });
+
+    let likes = user.likes;
+    let i = 0;
+    for(;i < likes[newstype].length;i++) {
+        if(likes[newstype][i] === news_id)
+            break;
+    }
+    likes[newstype].splice(i,1);
+    await usersModel.update({'email':email},{'$set':{'likes':likes}},async(err,docs)=> {
+        if(err){
+            console.log(err)
+        }
+    });
+};
+
+
 module.exports = {
     'getTypeNews': getTypeNews,
     'getNewsContent': getNewsContent,
@@ -157,4 +240,7 @@ module.exports = {
     'getUserName': getUserName,
     'updateUser' : updateUser,
     'addScans': addScans,
+    'addLikes':addLikes,
+    'getUser':getUser,
+    'deleteLikes':deleteLikes,
 };

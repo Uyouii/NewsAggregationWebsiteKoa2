@@ -8,7 +8,7 @@ router.prefix('/users');
 router.post('/getEmailNumber', async (ctx, next) => {
     const email = ctx.request.body.email || '';
     console.log(email);
-    if(email != '') {
+    if(email !== '') {
         ctx.body = await db.getEmailNumber(email);
     }
 
@@ -22,7 +22,7 @@ router.post('/addUser', async (ctx, next) => {
     const name = ctx.request.body.username || '';
     const email = ctx.request.body.email || '';
     const password = ctx.request.body.password || '';
-    if (await db.getEmailNumber(email) == 1) {
+    if (await db.getEmailNumber(email) === 1) {
         ctx.body = false;
     }
     else {
@@ -45,6 +45,14 @@ router.post('/getUserName',async(ctx,next)=>{
     ctx.body = user[0]['name'];
 });
 
+router.post('/getUser',async(ctx,next)=>{
+    const email = ctx.request.body.email || '';
+    console.log('email: ' + email);
+    let user = await db.getUserName(email);
+    ctx.body = user[0];
+});
+
+
 router.post('/changeUserMessage',async(ctx,next)=> {
     const name = ctx.request.body.username || '';
     const email = ctx.request.body.email || '';
@@ -62,6 +70,24 @@ router.post('/addScans',async(ctx,next)=> {
 
     ctx.body = true;
 
+});
+
+router.post('/addLikes',async(ctx,next)=>{
+    const email = ctx.request.body.email || '';
+    const news_id = ctx.request.body.news_id || ' ';
+    const newsType = ctx.request.body.newsType || ' ';
+    await db.addLikes(email,news_id,newsType);
+
+    ctx.body = true;
+});
+
+router.post('/deleteLikes',async(ctx,next)=>{
+    const email = ctx.request.body.email || '';
+    const news_id = ctx.request.body.news_id || ' ';
+    const newsType = ctx.request.body.newsType || ' ';
+    await db.deleteLikes(email,news_id,newsType);
+
+    ctx.body = true;
 });
 
 

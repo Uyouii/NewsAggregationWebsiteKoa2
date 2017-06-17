@@ -20,7 +20,7 @@ window.onload = function () {
     // const ul = document.getElementById("news-type-show");
 
     newsType = getCookie('newsType');
-    if(newsType == '')
+    if(newsType === '')
         newsType = '即时';
     document.getElementById("newsTitle").innerText = " " + newsType + "新闻";
     set_which_show();
@@ -35,17 +35,21 @@ $(document).ready(function(){
     });
 });
 
+window.onunload = function () {
+    alert("quit");
+};
+
 function setUser() {
     email = getCookie('email');
-    if(email != "") {
-        $.post("/users/getUserName",
+    if(email !== "") {
+        $.post("/users/getUser",
             {
                 email : email
             },
             function (data) {
                 user = data;
-                document.cookie = "user= " + user + "; path=/";
-                document.getElementById("showName").innerText = "_" + user;
+                document.cookie = "user= " + user['name'] + "; path=/";
+                document.getElementById("showName").innerText = "_" + user['name'];
                 setUserButton(true);
             }
         );
@@ -125,6 +129,11 @@ function showNewsList() {
         maxLine = 6;
         NUM = 10;
     }
+
+    let likesNewsSet = new Set();
+    if(user.likes[newsType] !== undefined)
+        likesNewsSet = new Set(user.likes[newsType]);
+
     for(let i = NUM * (pageNum - 1); i < newsData.length && i < NUM * pageNum; i++) {
         let imgdiv = document.createElement("div");
 
@@ -137,7 +146,7 @@ function showNewsList() {
         }
 
         while(j < content.length - 1 && imgnumber < maximgnumber) {
-            if (content[j][0] != "img") {
+            if (content[j][0] !== "img") {
                 j++;
                 continue;
             }
@@ -177,13 +186,13 @@ function showNewsList() {
         j = 0;
         while(j < content.length && j < maxLine && length < maxLength) {
             let text;
-            if(content[j][0] == 'p') {
+            if(content[j][0] === 'p') {
                 text = document.createElement('p');
             }
-            else if(content[j][0] == 'strong') {
+            else if(content[j][0] === 'strong') {
                 text = document.createElement('strong');
             }
-            else if(content[j][0] == 'img') {
+            else if(content[j][0] === 'img') {
                 j++;
                 continue;
             }
@@ -203,6 +212,64 @@ function showNewsList() {
             div2.appendChild(text);
             j++;
         }
+
+        let spandiv = document.createElement("div");
+        spandiv.setAttribute("class","pull-left");
+        let like = false;
+        if(likesNewsSet.has(newsData[i]['_id'])) {
+            like = true;
+        }
+        spandiv.setAttribute("style","font-size:20px;color:#00868B;");
+
+
+        let span2 = document.createElement("span");
+        span2.setAttribute("class","glyphicon glyphicon-heart");
+        span2.setAttribute("aria-hidden","true");
+        if(like) {
+            span2.setAttribute("style","font-size:25px; color:#EE2C2C");
+        }
+        else {
+            span2.setAttribute("style","font-size:25px; color:#00868B");
+        }
+        span2.news_id = newsData[i]['_id'];
+        span2.like = like;
+
+        let a3 = document.createElement("a");
+        a3.appendChild(span2);
+        span2.onclick = function () {
+            let news_id = this.news_id;
+            let span = this;
+            let like = this.like;
+            if(email !== "") {
+                if(!like) {
+                    $.post("/users/addLikes", {
+                            email: email,
+                            news_id : news_id,
+                            newsType: newsType
+                        },
+                        function (data) {
+                            span.setAttribute("style","font-size:25px; color:#EE2C2C");
+                        }
+                    );
+                }
+                else{
+                    $.post("/users/deleteLikes", {
+                            email: email,
+                            news_id : news_id,
+                            newsType: newsType
+                        },
+                        function (data) {
+                            span.setAttribute("style","font-size:25px; color:#00868B");
+                        }
+                    );
+                }
+            }
+        };
+
+        spandiv.innerText = "喜欢 ";
+        spandiv.appendChild(span2);
+
+
         let a2 = document.createElement("a");
         a2.setAttribute("href","/newspage");
         a2.setAttribute("target","_blank");
@@ -216,9 +283,9 @@ function showNewsList() {
         };
         a2.appendChild(btn);
         div2.appendChild(a2);
+        div2.appendChild(spandiv);
         div1.appendChild(div2);
         // let container = document.getElementById("news-container");
-
 
         document.getElementById("news-container").appendChild(div1);
     }
@@ -228,7 +295,7 @@ function getimgNumber(content) {
     let j = 0;
     let num = 0;
     while(j < content.length - 1) {
-        if(content[j][0] == 'img')
+        if(content[j][0] === 'img')
             num++;
         j++;
     }
@@ -298,7 +365,7 @@ function createButton(num) {
         buttonList[buttonList.length] = li;
         ul.appendChild(li);
 
-        if(i == 0) {
+        if(i === 0) {
             li.setAttribute("class","active");
             //记录上一个激活的button
             lastActiveButton = li;
@@ -339,7 +406,7 @@ function getCookie(cname)
     for(let i=0; i<ca.length; i++)
     {
         let c = ca[i].trim();
-        if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        if (c.indexOf(name)=== 0) return c.substring(name.length,c.length);
     }
     return "";
 }
