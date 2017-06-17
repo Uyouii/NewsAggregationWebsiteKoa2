@@ -4,6 +4,8 @@
 
 let news_id;
 let atPC = true;
+let email;
+let user;
 
 window.onload = function () {
     // const ul = document.getElementById("news-type-show");
@@ -12,6 +14,7 @@ window.onload = function () {
     set_which_show();
     getNewsContent();
     setUser();
+    addScans();
 };
 
 
@@ -21,6 +24,19 @@ $(document).ready(function(){
         set_which_show();
     });
 });
+
+function addScans() {
+    if(email != "") {
+        $.post("/users/addScans", {
+            email: email,
+            news_id : news_id
+        },
+        function (data) {
+
+        }
+        );
+    }
+}
 
 function setUser() {
     email = getCookie('email');

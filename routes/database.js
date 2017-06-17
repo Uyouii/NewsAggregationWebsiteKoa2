@@ -24,7 +24,8 @@ const usersSchema = new mongoose.Schema({
     name:String,
     email:String,
     password:String,
-    likesType:Object
+    likes:Object,
+    scans:Object
 });
 
 const usersModel = mongoose.model('users',usersSchema);
@@ -97,6 +98,55 @@ const updateUser = async(email,name,password)=> {
     });
 };
 
+const addScans = async(email,news_id)=> {
+
+    let user;
+    await usersModel.find({'email':email},async(err,docs)=> {
+        if(err)
+            console.log(err);
+        user = docs[0];
+    });
+
+    let newstype;
+    await newsModel.find({_id:ObjectID(news_id)} , async(err,docs) => {
+        if(err) {
+            console.log(err);
+        }
+        newstype = docs[0].type;
+    });
+
+    console.log(newstype);
+    console.log(user);
+    //更新User的浏览记录
+    if(user.scans != undefined) {
+        let scans = user.scans;
+        if(scans[newstype] != undefined) {
+           scans[newstype]++;
+           console.log("1" + scans);
+           await usersModel.update({'email':email},{'$set':{'scans':scans}},async(err,docs)=> {
+               if(err){
+                   console.log(err)
+               }
+           });
+        }
+        else {
+            scans[newstype] = 1;
+            console.log("2" + scans);
+            await usersModel.update({'email':email},{'$set':{'scans':scans}},async(err,docs)=> {
+                if(err) {
+                    console.log(err)
+                }
+            })
+        }
+    }
+    else {
+        let scans = new Map();
+        scans[newstype] = 1;
+        console.log("3" + scans);
+        await usersModel.update({'email':email},{'$set':{'scans':scans}})
+    }
+
+};
 
 module.exports = {
     'getTypeNews': getTypeNews,
@@ -106,4 +156,5 @@ module.exports = {
     'getUserNumber': getUserNumber,
     'getUserName': getUserName,
     'updateUser' : updateUser,
+    'addScans': addScans,
 };

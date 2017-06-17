@@ -55,5 +55,14 @@ router.post('/changeUserMessage',async(ctx,next)=> {
     ctx.body = true;
 });
 
+router.post('/addScans',async(ctx,next)=> {
+    const email = ctx.request.body.email || '';
+    const news_id = ctx.request.body.news_id || ' ';
+    await db.addScans(email,news_id);
+
+    ctx.body = true;
+
+});
+
 
 module.exports = router;

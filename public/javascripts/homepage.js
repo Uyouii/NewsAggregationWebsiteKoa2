@@ -13,6 +13,8 @@ let lastActiveButton;
 let buttonList = [];
 let maximgnumber = 3;
 let atPC = true;
+let user;
+let email;
 
 window.onload = function () {
     // const ul = document.getElementById("news-type-show");
@@ -116,8 +118,13 @@ function getNewsList() {
 
 //显示出当页新闻列表
 function showNewsList() {
-    const maxLength = 120;
-    const maxLine = 5;
+    let maxLength = 100;
+    let maxLine = 4;
+    if(atPC) {
+        maxLength = 180;
+        maxLine = 6;
+        NUM = 10;
+    }
     for(let i = NUM * (pageNum - 1); i < newsData.length && i < NUM * pageNum; i++) {
         let imgdiv = document.createElement("div");
 
@@ -324,10 +331,6 @@ function createButton(num) {
 
 }
 
-
-window.onunload = function () {
-    //document.cookie = "newsType= 即时 ; path=homepage.html";
-};
 
 function getCookie(cname)
 {
