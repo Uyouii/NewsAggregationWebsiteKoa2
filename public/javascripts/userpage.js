@@ -24,23 +24,29 @@ function set_which_show() {
 }
 
 function setUser() {
-    email = getCookie('email');
     if(email !== "") {
-        $.post("/users/getUserName",
+        $.post("/users/getUser",
             {
                 email : email
             },
             function (data) {
                 user = data;
-                document.cookie = "user= " + user + "; path=/";
-                document.getElementById("showName").innerText = "_" + user;
+                document.cookie = "user= " + user['name'] + "; path=/";
+                document.getElementById("showName").innerText = "_" + user['name'];
                 setUserButton(true);
+                setUserMessage();
+                drawTable();
             }
         );
     }
     else {
         setUserButton(false);
     }
+}
+
+function setUserMessage() {
+    document.getElementById("userName").innerText =  user['name'];
+    document.getElementById("userEmail").innerText = email;
 }
 
 function setUserButton(login) {
@@ -57,12 +63,13 @@ function setUserButton(login) {
 }
 
 let email;
-let uesr;
+let user;
 
 window.onload = function () {
+
+    email = getCookie('email');
     set_which_show();
     setUser();
-    document.getElementById("email").value = email;
 };
 
 $(document).ready(function(){
@@ -103,3 +110,114 @@ function getCookie(cname)
     }
     return "";
 }
+
+function drawTable() {
+//- PIE CHART -
+//-------------
+// Get context with jQuery - using jQuery's .get() method.
+    let pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+    let pieChart = new Chart(pieChartCanvas);
+    let PieData = getBrowsingHistory();
+
+    let pieChartCanvas2 = $("#pieChart2").get(0).getContext("2d");
+    let pieChart2 = new Chart(pieChartCanvas2);
+    let PieData2 = getLikesNews();
+
+    let pieOptions = {
+        //Boolean - Whether we should show a stroke on each segment
+        segmentShowStroke: true,
+        //String - The colour of each segment stroke
+        segmentStrokeColor: "#fff",
+        //Number - The width of each segment stroke
+        segmentStrokeWidth: 2,
+        //Number - The percentage of the chart that we cut out of the middle
+        percentageInnerCutout: 50, // This is 0 for Pie charts
+        //Number - Amount of animation steps
+        animationSteps: 100,
+        //String - Animation easing effect
+        animationEasing: "easeOutBounce",
+        //Boolean - Whether we animate the rotation of the Doughnut
+        animateRotate: true,
+        //Boolean - Whether we animate scaling the Doughnut from the centre
+        animateScale: true,
+        //Boolean - whether to make the chart responsive to window resizing
+        responsive: true,
+        // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+        maintainAspectRatio: true,
+        //String - A legend template
+        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+    };
+
+//Create pie or douhnut chart
+// You can switch between pie and douhnut using the method below.
+    pieChart.Doughnut(PieData, pieOptions);
+
+    pieChart2.Doughnut(PieData2, pieOptions);
+}
+
+let colorArrary = [
+    ["#f56954","#EE2C2C"],
+    ["#00a65a","#00EE76"],
+    ["#f39c12","#EEEE00"],
+    ["#00c0ef","#00FFFF"],
+    ["#3c8dbc","#00F5FF"],
+    ["#d2d6de","#F8F8FF"],
+    ["#E066FF","#FF00FF"],
+    ["#B8860B","#FFA500"],
+    ["#32CD32","#7CFC00"],
+    ["#828282","#BEBEBE"],
+];
+
+function getBrowsingHistory() {
+    let dataList = [];
+    let total = 0;
+    for (let key in user.scans) {
+        if(key === " " || key === "undefined" || key === "即时" )
+            continue;
+        total += user.scans[key];
+    }
+
+    let i = 0;
+    for (let key in user.scans) {
+        if(key === " " || key === "undefined" || key === "即时" || user.scans[key] <= total / 25)
+            continue;
+        let obj = {
+            value: user.scans[key],
+            color: colorArrary[i][0],
+            highlight: colorArrary[i][1],
+            label: key
+
+        };
+        i++;
+        if(i >= 10)
+            i %= 10;
+        dataList.push(obj);
+    }
+    return dataList;
+
+}
+
+function getLikesNews() {
+    let dataList = [];
+    let i = 0;
+    for (let key in user.likes) {
+        if(key === " " || key === "undefined" || key === "即时" )
+            continue;
+        let obj = {
+            value: user.likes[key].length,
+            color: colorArrary[i][0],
+            highlight: colorArrary[i][1],
+            label: key
+
+        };
+        i++;
+        if(i >= 10)
+            i %= 10;
+        dataList.push(obj);
+    }
+    return dataList;
+}
+
+
+
+

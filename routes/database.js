@@ -113,39 +113,38 @@ const addScans = async(email,news_id,newstype)=> {
         if(err)
             console.log(err);
         user = docs[0];
-    });
 
-
-    console.log(newstype);
-    // console.log(user);
-    //更新User的浏览记录
-    if(user.scans !== undefined) {
-        let scans = user.scans;
-        if(scans[newstype] !== undefined) {
-           scans[newstype]++;
-           console.log("1" + scans);
-           await usersModel.update({'email':email},{'$set':{'scans':scans}},async(err,docs)=> {
-               if(err){
-                   console.log(err)
-               }
-           });
+        console.log(newstype);
+        // console.log(user);
+        //更新User的浏览记录
+        if(user.scans !== undefined) {
+            let scans = user.scans;
+            if(scans[newstype] !== undefined) {
+                scans[newstype]++;
+                console.log("1" + scans);
+                await usersModel.update({'email':email},{'$set':{'scans':scans}},async(err,docs)=> {
+                    if(err){
+                        console.log(err)
+                    }
+                });
+            }
+            else {
+                scans[newstype] = 1;
+                console.log("2" + scans);
+                await usersModel.update({'email':email},{'$set':{'scans':scans}},async(err,docs)=> {
+                    if(err) {
+                        console.log(err)
+                    }
+                })
+            }
         }
         else {
+            let scans = new Map();
             scans[newstype] = 1;
-            console.log("2" + scans);
-            await usersModel.update({'email':email},{'$set':{'scans':scans}},async(err,docs)=> {
-                if(err) {
-                    console.log(err)
-                }
-            })
+            console.log("3" + scans);
+            await usersModel.update({'email':email},{'$set':{'scans':scans}})
         }
-    }
-    else {
-        let scans = new Map();
-        scans[newstype] = 1;
-        console.log("3" + scans);
-        await usersModel.update({'email':email},{'$set':{'scans':scans}})
-    }
+    });
 
 };
 
@@ -156,23 +155,36 @@ const addLikes = async(email,news_id,newstype)=>{
         if(err)
             console.log(err);
         user = docs[0];
-    });
 
-    console.log(newstype);
+        console.log(newstype);
 
-    if(user.likes !== undefined) {
-        let likes = user.likes;
-        if(likes[newstype] !== undefined) {
-            console.log('1');
-            likes[newstype].push(news_id);
-            await usersModel.update({'email':email},{'$set':{'likes':likes}},async(err,docs)=> {
-                if(err){
-                    console.log(err)
-                }
-            });
+        if(user.likes !== undefined) {
+            let likes = user.likes;
+            if(likes[newstype] !== undefined) {
+                console.log('1');
+                likes[newstype].push(news_id);
+                await usersModel.update({'email':email},{'$set':{'likes':likes}},async(err,docs)=> {
+                    if(err){
+                        console.log(err)
+                    }
+                });
+            }
+            else {
+                console.log('2');
+                let ss = [];
+                ss.push(news_id);
+                likes[newstype] = ss;
+                console.log(likes);
+                await usersModel.update({'email':email},{'$set':{'likes':likes}},async(err,docs)=> {
+                    if(err){
+                        console.log(err)
+                    }
+                });
+            }
         }
         else {
-            console.log('2');
+            console.log('3');
+            let likes = new Map();
             let ss = [];
             ss.push(news_id);
             likes[newstype] = ss;
@@ -183,20 +195,8 @@ const addLikes = async(email,news_id,newstype)=>{
                 }
             });
         }
-    }
-    else {
-        console.log('3');
-        let likes = new Map();
-        let ss = [];
-        ss.push(news_id);
-        likes[newstype] = ss;
-        console.log(likes);
-        await usersModel.update({'email':email},{'$set':{'likes':likes}},async(err,docs)=> {
-            if(err){
-                console.log(err)
-            }
-        });
-    }
+    });
+
 
 };
 
@@ -207,20 +207,23 @@ const deleteLikes = async(email,news_id,newstype)=> {
         if(err)
             console.log(err);
         user = docs[0];
+
+        let likes = user.likes;
+        let i = 0;
+        while(i < likes[newstype].length) {
+            if(likes[newstype][i] === news_id){
+                likes[newstype].splice(i,1);
+            }
+            else i++;
+        }
+
+        await usersModel.update({'email':email},{'$set':{'likes':likes}},async(err,docs)=> {
+            if(err){
+                console.log(err)
+            }
+        });
     });
 
-    let likes = user.likes;
-    let i = 0;
-    for(;i < likes[newstype].length;i++) {
-        if(likes[newstype][i] === news_id)
-            break;
-    }
-    likes[newstype].splice(i,1);
-    await usersModel.update({'email':email},{'$set':{'likes':likes}},async(err,docs)=> {
-        if(err){
-            console.log(err)
-        }
-    });
 };
 
 

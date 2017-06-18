@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="stylesheets/my_style.css">
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="javascripts/bootstrap.js"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="javascripts/Chart.js"></script>
 </head>
 <body>
 
@@ -125,6 +127,60 @@
     </div><!-- /.container-fluid -->
 </nav>
 
+<br>
+<br>
+<br>
+
+<div class="container" style="font-size:20px;">
+    <div class="row">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">个人信息</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row" style="padding-bottom:10px;">
+                    <span class="label label-primary col-sm-2" style="font-size:20px;">用户名</span>
+                    <div class="col-sm-10" id="userName">董泰佑</div>
+                </div>
+                <div class="row">
+                    <span class="label label-primary col-sm-2" style="font-size:20px">邮箱</span>
+                    <div class="col-sm-10" id="userEmail">3140104431@zju.edu.cn</div>
+                </div>
+
+
+                <!--<span class="label label-info col-sm-1" style="font-size:20px">用户名</span>-->
+                <!--<div class="col-sm-11">董泰佑</div>-->
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">浏览记录</h1>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-6">
+                    <h2 class="text-center">话题浏览记录</h2>
+                    <div class="box-body">
+                        <canvas id="pieChart" style="height:350px;width:350px"></canvas>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <h2 class="text-center">喜欢话题记录</h2>
+                    <div class="box-body">
+                        <canvas id="pieChart2" style="height:350px;width:350px"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
 
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -144,5 +200,6 @@
 
 
 <script src="javascripts/userpage.js"></script>
+
 </body>
 </html>

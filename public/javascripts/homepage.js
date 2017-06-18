@@ -176,7 +176,7 @@ function showNewsList() {
         let a = document.createElement('a');
         a.innerText = newsData[i]['title'];
         a.setAttribute("href","/newspage");
-        a.setAttribute("target","_blank");
+        //a.setAttribute("target","_blank");
         a.news_id = newsData[i]['_id'];
         a.onclick = function () {
             document.cookie = "news_id= " + this.news_id + "; path=newspage.html";
@@ -287,7 +287,7 @@ function showNewsList() {
 
         let a2 = document.createElement("a");
         a2.setAttribute("href","/newspage");
-        a2.setAttribute("target","_blank");
+        //a2.setAttribute("target","_blank");
         a2.setAttribute("class","pull-right");
         let btn = document.createElement('button');
         btn.setAttribute("class","btn btn-default");
