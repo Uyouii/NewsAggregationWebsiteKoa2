@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0px"
+    android:paddingLeft="0px"
+    android:paddingRight="0px"
+    android:paddingTop="0px"
+    tools:context="experment.zju.newsaggregrationapp.MainActivity">
+
+    <WebView
+        android:id="@+id/mwebview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </WebView>
+</RelativeLayout>

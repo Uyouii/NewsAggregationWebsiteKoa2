@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>newsWebsite</title>
+    <link rel="stylesheet" href="stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="stylesheets/my_style.css">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="javascripts/bootstrap.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" style="font-size: 20px">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header" id="page-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-leaf"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="https://github.com/TaiyouDong" target="_blank">关于作者</a></li>
+            </ul>
+
+            <a class="navbar-brand" href="#" onclick=jumpTo("即时")>&nbsp;主页</a>
+            <a class="navbar-brand" href="#" onclick=jumpTo("推荐")>&nbsp;推荐</a>
+            <!--<a class="navbar-brand pull-right">-->
+                <!--<span class="glyphicon glyphicon-user"></span>-->
+                <!--&nbsp;登录-->
+                <!--&lt;!&ndash;<span class="caret"></span>&ndash;&gt;-->
+            <!--</a>-->
+
+
+        </div>
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <!--<li><a href="#">Link</a></li>-->
+                <li class="dropdown" id="notLoginButton">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <!--&nbsp;登录-->
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/login">登录</a></li>
+                        <li><a href="/register">注册</a></li>
+                        <!--<li><a href="#">个人主页</a></li>-->
+                        <!--<li><a href="#">修改密码</a></li>-->
+                        <!--<li role="separator" class="divider"></li>-->
+                        <!--<li><a href="#">退出当前账号</a></li>-->
+                    </ul>
+                </li>
+
+                <li class="dropdown" id="alreadyLoginButton">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-user" id="showName"></span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/userpage">个人主页</a></li>
+                        <li><a href="/changeMessagePage">修改个人信息</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#" onclick=showLogoutModal()>退出当前账号</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-left" id="news-type-show">
+                <li class="news-type"><a href="#" onclick=jumpTo("大陆")>大陆</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("国际")>国际</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("台湾")>台湾</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("社会")>社会</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("军事")>军事</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("港澳")>港澳</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("历史")>历史</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("财经")>财经</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("娱乐")>娱乐</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("体育")>体育</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("时尚")>时尚</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("科技")>科技</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("读书")>读书</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("游戏")>游戏</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("文化")>文化</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("公益")>公益</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("旅游")>旅游</a></li>
+                <li class="news-type"><a href="#" onclick=jumpTo("健康")>健康</a></li>
+
+                <li class="dropdown" id="news-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        新闻类别
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu ">
+                        <li><a href="#" onclick=jumpTo("大陆")>大陆</a></li>
+                        <li><a href="#" onclick=jumpTo("国际")>国际</a></li>
+                        <li><a href="#" onclick=jumpTo("台湾")>台湾</a></li>
+                        <li><a href="#" onclick=jumpTo("社会")>社会</a></li>
+                        <li><a href="#" onclick=jumpTo("军事")>军事</a></li>
+                        <li><a href="#" onclick=jumpTo("港澳")>港澳</a></li>
+                        <li><a href="#" onclick=jumpTo("历史")>历史</a></li>
+                        <li><a href="#" onclick=jumpTo("财经")>财经</a></li>
+                        <li><a href="#" onclick=jumpTo("娱乐")>娱乐</a></li>
+                        <li><a href="#" onclick=jumpTo("体育")>体育</a></li>
+                        <li><a href="#" onclick=jumpTo("时尚")>时尚</a></li>
+                        <li><a href="#" onclick=jumpTo("科技")>科技</a></li>
+                        <li><a href="#" onclick=jumpTo("读书")>读书</a></li>
+                        <li><a href="#" onclick=jumpTo("游戏")>游戏</a></li>
+                        <li><a href="#" onclick=jumpTo("文化")>文化</a></li>
+                        <li><a href="#" onclick=jumpTo("公益")>公益</a></li>
+                        <li><a href="#" onclick=jumpTo("旅游")>旅游</a></li>
+                        <li><a href="#" onclick=jumpTo("健康")>健康</a></li>
+                        <!--<li role="separator" class="divider"></li>-->
+                    </ul>
+                </li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <h1><span class="glyphicon glyphicon-sunglasses"></span><strong id="newsTitle"></strong></h1>
+    <br>
+    <div id="news-container" style="font-size: 17px">
+
+    </div>
+    <!--<div class="panel panel-default">-->
+    <!--<div class="panel-body">-->
+    <!--Panel content-->
+    <!--Panel content-->
+    <!--Panel content-->
+    <!--Panel content-->
+    <!--Panel content-->
+    <!--</div>-->
+    <!--</div>-->
+
+</div>
+
+<div class="text-center" >
+    <nav aria-label="Page navigation">
+        <ul class="pagination pagination-lg" id="button-group">
+            <!--<li>-->
+                <!--<a href="" aria-label="Previous">-->
+                    <!--<span aria-hidden="true">&laquo;</span>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="active"><a href="">1</a></li>-->
+            <!--<li><a href="">2</a></li>-->
+            <!--<li><a href="">3</a></li>-->
+            <!--<li><a href="">4</a></li>-->
+            <!--<li><a href="">5</a></li>-->
+            <!--<li>-->
+                <!--<a href="" aria-label="Next">-->
+                    <!--<span aria-hidden="true">&raquo;</span>-->
+                <!--</a>-->
+            <!--</li>-->
+        </ul>
+    </nav>
+</div>
+
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="logoutModalLabel">提示</h4>
+            </div>
+            <div class="modal-body" id="logoutTip">确定退出当前账号？</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick=logout()>退出</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<script src="javascripts/homepage.js"></script>
+</body>
+</html>
