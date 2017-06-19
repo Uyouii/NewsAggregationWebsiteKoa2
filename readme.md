@@ -96,9 +96,11 @@ PC端新闻主页：
 ![](image/PChome1.png)
 
 移动端新闻主页：
-
+<div>
 <img src="image/APPhome1.png" height="400" align=center />
 <img src="image/APPhome2.png" height="400" align=center />
+</div>
+
 
 在访问新闻主页时首先会读取cookie中的新闻类别，如果读取不到，则默认访问新闻主页（即时新闻），如果读取到了新闻类别，则向服务器发送该新闻类别并获取该新闻类别下的新闻列表并显示出来。
 
@@ -122,9 +124,10 @@ PC端新闻页面：
 ![](image/PCnews1.png)
 
 移动端新闻页面：
-
+<div>
 <img src="image/APPnews1.png" height="400" align=center />
 <img src="image/APPnews2.png" height="400" align=center />
+</div>
 
 新闻页面会显示出新闻的标题，发布时间，新闻的内容等信息。
 
@@ -142,10 +145,11 @@ PC端注册：
 ![](image/PCregister1.png)
 
 移动端新闻注册：
-
+<div>
 <img src="image/APPregister1.png" height="370" align=center />
 <img src="image/APPregister2.png" height="370" align=center />
 <img src="image/APPregister3.png" height="370" align=center />
+</div>
 
 首先点击下拉栏中的注册的选项进入用户注册的页面。
 
@@ -159,9 +163,10 @@ PC端用户登录
 ![](image/PClogin1.png)
 
 移动端用户登录：
-
+<div>
 <img src="image/APPlogin1.png" height="400" align=center />
 <img src="image/APPlogin2.png" height="400" align=center />
+</div>
 
 用户在登录时需要输入邮箱和密码（邮箱是辨识用户的唯一ID）。
 
@@ -173,10 +178,11 @@ PC端信息修改：
 ![](image/PCchange1.png)
 
 移动端信息修改：
-
+<div>
 <img src="image/APPchange1.png" height="370" align=center />
 <img src="image/APPchange2.png" height="370" align=center />
 <img src="image/APPchange3.png" height="370" align=center />
+</div>
 
 用户可以修改除邮箱外的个人信息：用户名和密码等。用户在修改信息时同样要保证两次输入密码相同，用户名不能为空等。
 
@@ -188,10 +194,11 @@ PC端个人主页：
 ![](image/PCone1.png)
 
 移动端个人主页：
-
+<div>
 <img src="image/APPone1.png" height="370" align=center />
 <img src="image/APPone2.png" height="370" align=center />
 <img src="image/APPone3.png" height="370" align=center />
+</div>
 
 在登录后可以点击选择个人主页页面，在个人主页会显示出用户的用户名和邮箱以及用户浏览话题的记录和关注（喜欢）话题的记录。
 
@@ -203,9 +210,10 @@ PC端推荐页面：
 ![](image/PCsuggest1.png)
 
 移动端推荐页面：
-
+<div>
 <img src="image/APPsuggest1.png" height="400" align=center />
 <img src="image/APPsuggest2.png" height="400" align=center />
+</div>
 
 推荐页面和普通的新闻页面基本一致，不同的是推荐页面获取新闻是获取的是服务器根据用户的浏览和喜欢新闻动态得到的新闻列表。
 
@@ -216,9 +224,10 @@ PC端推荐页面：
 # 五、代码架构及实现
 
 ## 1. 工程代码架构
-
+<div>
 <img src="image/program1.png" height="400" align=center />
 <img src="image/program2.png" height="400" align=center />
+</div>
 
 views目录下是前端的html页面，javastripts目录下是前端页面对应的js文件以及前端界面依赖的库文件。
 
