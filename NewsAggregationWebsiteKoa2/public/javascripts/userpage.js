@@ -156,7 +156,7 @@ function drawTable() {
 }
 
 let colorArrary = [
-    ["#f56954","#EE2C2C"],
+    ["#EE2C2C","#f56954"],
     ["#00a65a","#00EE76"],
     ["#f39c12","#EEEE00"],
     ["#00c0ef","#00FFFF"],
