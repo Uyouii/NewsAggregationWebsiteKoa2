@@ -1,3 +1,4 @@
+
 # 一、项目要求
 1. 定时到各主流新闻门户网站抓取信息 
 2. 用户访问网站时能看到聚合的信息内容 
@@ -94,12 +95,12 @@ node.js下的routes根据前端请求的路径对请求进行分类，然后调�
 
 PC端新闻主页：
 
-![](https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PChome1.png)
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PChome1.png" height="400" align=center />
 
 移动端新闻主页：
 <div>
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/Apphome1.png" height="400" align=center />
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPhome2.png" height="400" align=center />
+    <img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/Apphome1.png" height="450" align=center />
+    <img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPhome2.png" height="450" align=center />
 </div>
 
 
@@ -113,7 +114,8 @@ PC端新闻主页：
 
 在新闻主页中也实现了分页功能：
 
-![](https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PChome2.png)
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PChome2.png" height="400" align=center />
+
 
 每页加载新闻的个也会更具PC端和移动端进行调整。
 
@@ -124,12 +126,13 @@ PC端新闻主页：
 
 PC端新闻页面：
 
-![](https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PCnews1.png)
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PCnews1.png" height="400" align=center />
+
 
 移动端新闻页面：
 <div>
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPnews1.png" height="500" align=center />
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPnews2.png" height="500" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPnews1.png" height="450" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPnews2.png" height="450" align=center />
 </div>
 
 新闻页面会显示出新闻的标题，发布时间，新闻的内容等信息。
@@ -146,13 +149,13 @@ PC端新闻页面：
 
 PC端注册：
 
-![](https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PCregister1.png)
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PCregister1.png" height="400" align=center />
 
 移动端新闻注册：
 <div>
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPregister1.png" height="400" align=center />
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPregister2.png" height="400" align=center />
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPregister3.png" height="400" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPregister1.png" height="390" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPregister2.png" height="390" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPregister3.png" height="390" align=center />
 </div>
 
 首先点击下拉栏中的注册的选项进入用户注册的页面。
@@ -165,12 +168,12 @@ PC端注册：
 
 PC端用户登录：
 
-![](https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PClogin1.png)
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PClogin1.png" height="400" align=center />
 
 移动端用户登录：
 <div>
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPlogin1.png" height="500" align=center />
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPlogin2.png" height="500" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPlogin1.png" height="450" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPlogin2.png" height="450" align=center />
 </div>
 
 用户在登录时需要输入邮箱和密码（邮箱是辨识用户的唯一ID）。
@@ -181,13 +184,13 @@ PC端用户登录：
 
 PC端信息修改：
 
-![](https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PCchange1.png)
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PCchange1.png" height="400" align=center />
 
 移动端信息修改：
 <div>
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPchange1.png" height="400" align=center />
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPchange2.png" height="400" align=center />
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPchange3.png" height="400" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPchange1.png" height="390" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPchange2.png" height="390" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPchange3.png" height="390" align=center />
 </div>
 
 用户可以修改除邮箱外的个人信息：用户名和密码等。用户在修改信息时同样要保证两次输入密码相同，用户名不能为空等。
@@ -198,13 +201,14 @@ PC端信息修改：
 
 PC端个人主页：
 
-![](https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PCone1.png)
+
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PCone1.png" height="400" align=center />
 
 移动端个人主页：
 <div>
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPone1.png" height="400" align=center />
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPone2.png" height="400" align=center />
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPone3.png" height="400" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPone1.png" height="390" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPone2.png" height="390" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPone3.png" height="390" align=center />
 </div>
 
 在登录后可以点击选择个人主页页面，在个人主页会显示出用户的用户名和邮箱以及用户浏览话题的记录和关注（喜欢）话题的记录。
@@ -215,12 +219,13 @@ PC端个人主页：
 
 PC端推荐页面：
 
-![](image/PCsuggest1.png)
+
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/PCsuggest1.png" height="400" align=center />
 
 移动端推荐页面：
 <div>
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPsuggest1.png" height="500" align=center />
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPsuggest2.png" height="500" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPsuggest1.png" height="450" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/APPsuggest2.png" height="450" align=center />
 </div>
 
 推荐页面和普通的新闻页面基本一致，不同的是推荐页面获取新闻是获取的是服务器根据用户的浏览和喜欢新闻动态得到的新闻列表。
@@ -233,8 +238,8 @@ PC端推荐页面：
 
 ## 1. 工程代码架构
 <div>
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/program1.png" height="400" align=center />
-<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/program2.png" height="400" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/program1.png" height="390" align=center />
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/program2.png" height="390" align=center />
 </div>
 
 views目录下是前端的html页面，javastripts目录下是前端页面对应的js文件以及前端界面依赖的库文件。
@@ -1478,7 +1483,8 @@ const addLikes = async(email,news_id,newstype)=>{
 
 例如数据库用用户信息的记录以及scans和likes的统计。
 
-![](https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/mongo1.png)
+
+<img src="https://raw.githubusercontent.com/TaiyouDong/NewsAggregationWebsiteKoa2/master/image/mongo1.PNG" height="600" align=center />
 
 ### 删除user.likes
 在用户点击新闻中关注新闻按钮后则会调用添加user.likes的请求
