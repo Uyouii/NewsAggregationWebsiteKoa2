@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String url = "http://210.32.188.139:3000";
+    private String url = "http://210.32.185.83:3000";
     private String notices[][] = new String [10][5];
 
     @Override
