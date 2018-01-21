@@ -23,7 +23,7 @@
 
 进入NewsAggregationWebsiteKoa2工程目录，在cmd运行`npm install`命令安装项目运行需要的模块。
 
-在运行项目之前需要先运行新闻的爬取项目将新闻爬取到数据库中，新闻爬去的项目在：<https://github.com/TaiyouDong/NewsSpider>
+在运行项目之前需要先运行新闻的爬取项目将新闻爬取到数据库中，新闻爬取的项目在 `PhoenixNews`目录下
 
 每次运行服务器需要在NewsAggregationWebsiteKoa2目录下运行`npm start`命令打开服务器
 
